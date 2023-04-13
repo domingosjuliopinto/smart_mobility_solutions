@@ -1,0 +1,229 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-fleet-heading" data-cy="FleetCreateUpdateHeading" jhiTranslate="smsbackendApp.fleet.home.createOrEditLabel">
+        Create or edit a Fleet
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.fleet.driver_name" for="field_driver_name">Driver Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="driver_name"
+            id="field_driver_name"
+            data-cy="driver_name"
+            formControlName="driver_name"
+          />
+          <div *ngIf="editForm.get('driver_name')!.invalid && (editForm.get('driver_name')!.dirty || editForm.get('driver_name')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('driver_name')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.fleet.driver_email" for="field_driver_email">Driver Email</label>
+          <input
+            type="text"
+            class="form-control"
+            name="driver_email"
+            id="field_driver_email"
+            data-cy="driver_email"
+            formControlName="driver_email"
+          />
+          <div
+            *ngIf="editForm.get('driver_email')!.invalid && (editForm.get('driver_email')!.dirty || editForm.get('driver_email')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('driver_email')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('driver_email')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Driver Email' }"
+            >
+              This field should follow pattern for Driver Email.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.fleet.driver_address" for="field_driver_address">Driver Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="driver_address"
+            id="field_driver_address"
+            data-cy="driver_address"
+            formControlName="driver_address"
+          />
+          <div
+            *ngIf="
+              editForm.get('driver_address')!.invalid && (editForm.get('driver_address')!.dirty || editForm.get('driver_address')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('driver_address')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.fleet.driver_phone_no" for="field_driver_phone_no">Driver Phone No</label>
+          <input
+            type="text"
+            class="form-control"
+            name="driver_phone_no"
+            id="field_driver_phone_no"
+            data-cy="driver_phone_no"
+            formControlName="driver_phone_no"
+          />
+          <div
+            *ngIf="
+              editForm.get('driver_phone_no')!.invalid &&
+              (editForm.get('driver_phone_no')!.dirty || editForm.get('driver_phone_no')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('driver_phone_no')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('driver_phone_no')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 8 }"
+            >
+              This field is required to be at least 8 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('driver_phone_no')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 15 }"
+            >
+              This field cannot be longer than 15 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('driver_phone_no')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Driver Phone No' }"
+            >
+              This field should follow pattern for Driver Phone No.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.fleet.vehicle_plate_no" for="field_vehicle_plate_no"
+            >Vehicle Plate No</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="vehicle_plate_no"
+            id="field_vehicle_plate_no"
+            data-cy="vehicle_plate_no"
+            formControlName="vehicle_plate_no"
+          />
+          <div
+            *ngIf="
+              editForm.get('vehicle_plate_no')!.invalid &&
+              (editForm.get('vehicle_plate_no')!.dirty || editForm.get('vehicle_plate_no')!.touched)
+            "
+          ></div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.fleet.vehicle_type" for="field_vehicle_type">Vehicle Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="vehicle_type"
+            id="field_vehicle_type"
+            data-cy="vehicle_type"
+            formControlName="vehicle_type"
+          />
+          <div
+            *ngIf="editForm.get('vehicle_type')!.invalid && (editForm.get('vehicle_type')!.dirty || editForm.get('vehicle_type')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('vehicle_type')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.fleet.vehicle_status" for="field_vehicle_status">Vehicle Status</label>
+          <input
+            type="text"
+            class="form-control"
+            name="vehicle_status"
+            id="field_vehicle_status"
+            data-cy="vehicle_status"
+            formControlName="vehicle_status"
+          />
+          <div
+            *ngIf="
+              editForm.get('vehicle_status')!.invalid && (editForm.get('vehicle_status')!.dirty || editForm.get('vehicle_status')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('vehicle_status')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="delivery">
+      <h2 data-cy="deliveryDetailsHeading"><span jhiTranslate="smsbackendApp.delivery.detail.title">Delivery</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ delivery.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.delivery.parcel_id">Parcel Id</span></dt>
+        <dd>
+          <span>{{ delivery.parcel_id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.delivery.driver_id">Driver Id</span></dt>
+        <dd>
+          <span>{{ delivery.driver_id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.delivery.request_time">Request Time</span></dt>
+        <dd>
+          <span>{{ delivery.request_time | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.delivery.assigned_time">Assigned Time</span></dt>
+        <dd>
+          <span>{{ delivery.assigned_time | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.delivery.estimated_time">Estimated Time</span></dt>
+        <dd>
+          <span>{{ delivery.estimated_time | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.delivery.ended_time">Ended Time</span></dt>
+        <dd>
+          <span>{{ delivery.ended_time | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.delivery.star_received">Star Received</span></dt>
+        <dd>
+          <span>{{ delivery.star_received }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.delivery.delivery_status">Delivery Status</span></dt>
+        <dd>
+          <span>{{ delivery.delivery_status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/delivery', delivery.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="parcel">
+      <h2 data-cy="parcelDetailsHeading"><span jhiTranslate="smsbackendApp.parcel.detail.title">Parcel</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ parcel.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.sender_name">Sender Name</span></dt>
+        <dd>
+          <span>{{ parcel.sender_name }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.sender_email">Sender Email</span></dt>
+        <dd>
+          <span>{{ parcel.sender_email }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.sender_address">Sender Address</span></dt>
+        <dd>
+          <span>{{ parcel.sender_address }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.sender_phone_no">Sender Phone No</span></dt>
+        <dd>
+          <span>{{ parcel.sender_phone_no }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.receiver_name">Receiver Name</span></dt>
+        <dd>
+          <span>{{ parcel.receiver_name }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.receiver_email">Receiver Email</span></dt>
+        <dd>
+          <span>{{ parcel.receiver_email }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.receiver_address">Receiver Address</span></dt>
+        <dd>
+          <span>{{ parcel.receiver_address }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.receiver_phone_no">Receiver Phone No</span></dt>
+        <dd>
+          <span>{{ parcel.receiver_phone_no }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.parcel_name">Parcel Name</span></dt>
+        <dd>
+          <span>{{ parcel.parcel_name }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.parcel_type">Parcel Type</span></dt>
+        <dd>
+          <span>{{ parcel.parcel_type }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.parcel_weight_in_kg">Parcel Weight In Kg</span></dt>
+        <dd>
+          <span>{{ parcel.parcel_weight_in_kg }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.parcel.status">Status</span></dt>
+        <dd>
+          <span>{{ parcel.status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/parcel', parcel.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "smsbackendApp": {
+    "delivery": {
+      "home": {
+        "title": "Deliveries",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Delivery",
+        "createOrEditLabel": "Create or edit a Delivery",
+        "notFound": "No Deliveries found"
+      },
+      "created": "A new Delivery is created with identifier {{ param }}",
+      "updated": "A Delivery is updated with identifier {{ param }}",
+      "deleted": "A Delivery is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Delivery {{ id }}?"
+      },
+      "detail": {
+        "title": "Delivery"
+      },
+      "id": "ID",
+      "parcel_id": "Parcel Id",
+      "driver_id": "Driver Id",
+      "request_time": "Request Time",
+      "assigned_time": "Assigned Time",
+      "estimated_time": "Estimated Time",
+      "ended_time": "Ended Time",
+      "star_received": "Star Received",
+      "delivery_status": "Delivery Status"
+    }
+  }
+}

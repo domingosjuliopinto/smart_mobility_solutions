@@ -1,0 +1,30 @@
+{
+  "smsbackendApp": {
+    "fleet": {
+      "home": {
+        "title": "Fleets",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Fleet",
+        "createOrEditLabel": "Create or edit a Fleet",
+        "notFound": "No Fleets found"
+      },
+      "created": "A new Fleet is created with identifier {{ param }}",
+      "updated": "A Fleet is updated with identifier {{ param }}",
+      "deleted": "A Fleet is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fleet {{ id }}?"
+      },
+      "detail": {
+        "title": "Fleet"
+      },
+      "id": "ID",
+      "driver_name": "Driver Name",
+      "driver_email": "Driver Email",
+      "driver_address": "Driver Address",
+      "driver_phone_no": "Driver Phone No",
+      "vehicle_plate_no": "Vehicle Plate No",
+      "vehicle_type": "Vehicle Type",
+      "vehicle_status": "Vehicle Status"
+    }
+  }
+}

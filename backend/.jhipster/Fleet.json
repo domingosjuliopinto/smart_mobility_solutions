@@ -1,0 +1,51 @@
+{
+  "changelogDate": "20230402130917",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "driver_name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "driver_email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+    },
+    {
+      "fieldName": "driver_address",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "driver_phone_no",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesMinlength": "8",
+      "fieldValidateRulesPattern": "[0-9]+"
+    },
+    {
+      "fieldName": "vehicle_plate_no",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "vehicle_type",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "vehicle_status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Fleet",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fleet">
+      <h2 data-cy="fleetDetailsHeading"><span jhiTranslate="smsbackendApp.fleet.detail.title">Fleet</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fleet.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.fleet.driver_name">Driver Name</span></dt>
+        <dd>
+          <span>{{ fleet.driver_name }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.fleet.driver_email">Driver Email</span></dt>
+        <dd>
+          <span>{{ fleet.driver_email }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.fleet.driver_address">Driver Address</span></dt>
+        <dd>
+          <span>{{ fleet.driver_address }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.fleet.driver_phone_no">Driver Phone No</span></dt>
+        <dd>
+          <span>{{ fleet.driver_phone_no }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.fleet.vehicle_plate_no">Vehicle Plate No</span></dt>
+        <dd>
+          <span>{{ fleet.vehicle_plate_no }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.fleet.vehicle_type">Vehicle Type</span></dt>
+        <dd>
+          <span>{{ fleet.vehicle_type }}</span>
+        </dd>
+        <dt><span jhiTranslate="smsbackendApp.fleet.vehicle_status">Vehicle Status</span></dt>
+        <dd>
+          <span>{{ fleet.vehicle_status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/fleet', fleet.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+<div>
+  <h2 id="page-heading" data-cy="ParcelHeading">
+    <span jhiTranslate="smsbackendApp.parcel.home.title">Parcels</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="smsbackendApp.parcel.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-parcel"
+        [routerLink]="['/parcel/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="smsbackendApp.parcel.home.createLabel"> Create a new Parcel </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="parcels?.length === 0">
+    <span jhiTranslate="smsbackendApp.parcel.home.notFound">No Parcels found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="parcels && parcels.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sender_name">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.sender_name">Sender Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sender_email">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.sender_email">Sender Email</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sender_address">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.sender_address">Sender Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="sender_phone_no">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.sender_phone_no">Sender Phone No</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receiver_name">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.receiver_name">Receiver Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receiver_email">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.receiver_email">Receiver Email</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receiver_address">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.receiver_address">Receiver Address</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="receiver_phone_no">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.receiver_phone_no">Receiver Phone No</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="parcel_name">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.parcel_name">Parcel Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="parcel_type">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.parcel_type">Parcel Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="parcel_weight_in_kg">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.parcel_weight_in_kg">Parcel Weight In Kg</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <div class="d-flex">
+              <span jhiTranslate="smsbackendApp.parcel.status">Status</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let parcel of parcels; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/parcel', parcel.id, 'view']">{{ parcel.id }}</a>
+          </td>
+          <td>{{ parcel.sender_name }}</td>
+          <td>{{ parcel.sender_email }}</td>
+          <td>{{ parcel.sender_address }}</td>
+          <td>{{ parcel.sender_phone_no }}</td>
+          <td>{{ parcel.receiver_name }}</td>
+          <td>{{ parcel.receiver_email }}</td>
+          <td>{{ parcel.receiver_address }}</td>
+          <td>{{ parcel.receiver_phone_no }}</td>
+          <td>{{ parcel.parcel_name }}</td>
+          <td>{{ parcel.parcel_type }}</td>
+          <td>{{ parcel.parcel_weight_in_kg }}</td>
+          <td>{{ parcel.status }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/parcel', parcel.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/parcel', parcel.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(parcel)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

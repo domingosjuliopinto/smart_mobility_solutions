@@ -1,0 +1,80 @@
+{
+  "changelogDate": "20230325145154",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "sender_name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sender_email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+    },
+    {
+      "fieldName": "sender_address",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "sender_phone_no",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesMinlength": "8",
+      "fieldValidateRulesPattern": "[0-9]+"
+    },
+    {
+      "fieldName": "receiver_name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "receiver_email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "pattern"],
+      "fieldValidateRulesPattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+    },
+    {
+      "fieldName": "receiver_address",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "receiver_phone_no",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "15",
+      "fieldValidateRulesMinlength": "8",
+      "fieldValidateRulesPattern": "[0-9]+"
+    },
+    {
+      "fieldName": "parcel_name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "parcel_type",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "parcel_weight_in_kg",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Parcel",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

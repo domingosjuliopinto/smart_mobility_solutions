@@ -1,0 +1,207 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-delivery-heading" data-cy="DeliveryCreateUpdateHeading" jhiTranslate="smsbackendApp.delivery.home.createOrEditLabel">
+        Create or edit a Delivery
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.delivery.parcel_id" for="field_parcel_id">Parcel Id</label>
+          <input type="number" class="form-control" name="parcel_id" id="field_parcel_id" data-cy="parcel_id" formControlName="parcel_id" />
+          <div *ngIf="editForm.get('parcel_id')!.invalid && (editForm.get('parcel_id')!.dirty || editForm.get('parcel_id')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('parcel_id')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('parcel_id')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.delivery.driver_id" for="field_driver_id">Driver Id</label>
+          <input type="number" class="form-control" name="driver_id" id="field_driver_id" data-cy="driver_id" formControlName="driver_id" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.delivery.request_time" for="field_request_time">Request Time</label>
+          <div class="d-flex">
+            <input
+              id="field_request_time"
+              data-cy="request_time"
+              type="datetime-local"
+              class="form-control"
+              name="request_time"
+              formControlName="request_time"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div
+            *ngIf="editForm.get('request_time')!.invalid && (editForm.get('request_time')!.dirty || editForm.get('request_time')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('request_time')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('request_time')?.errors?.datetimelocal"
+              jhiTranslate="entity.validation.datetimelocal"
+            >
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.delivery.assigned_time" for="field_assigned_time">Assigned Time</label>
+          <div class="d-flex">
+            <input
+              id="field_assigned_time"
+              data-cy="assigned_time"
+              type="datetime-local"
+              class="form-control"
+              name="assigned_time"
+              formControlName="assigned_time"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.delivery.estimated_time" for="field_estimated_time">Estimated Time</label>
+          <div class="d-flex">
+            <input
+              id="field_estimated_time"
+              data-cy="estimated_time"
+              type="datetime-local"
+              class="form-control"
+              name="estimated_time"
+              formControlName="estimated_time"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.delivery.ended_time" for="field_ended_time">Ended Time</label>
+          <div class="d-flex">
+            <input
+              id="field_ended_time"
+              data-cy="ended_time"
+              type="datetime-local"
+              class="form-control"
+              name="ended_time"
+              formControlName="ended_time"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.delivery.star_received" for="field_star_received">Star Received</label>
+          <input
+            type="number"
+            class="form-control"
+            name="star_received"
+            id="field_star_received"
+            data-cy="star_received"
+            formControlName="star_received"
+          />
+          <div
+            *ngIf="
+              editForm.get('star_received')!.invalid && (editForm.get('star_received')!.dirty || editForm.get('star_received')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('star_received')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('star_received')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 5 }"
+            >
+              This field cannot be more than 5.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('star_received')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.delivery.delivery_status" for="field_delivery_status"
+            >Delivery Status</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="delivery_status"
+            id="field_delivery_status"
+            data-cy="delivery_status"
+            formControlName="delivery_status"
+          />
+          <div
+            *ngIf="
+              editForm.get('delivery_status')!.invalid &&
+              (editForm.get('delivery_status')!.dirty || editForm.get('delivery_status')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('delivery_status')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

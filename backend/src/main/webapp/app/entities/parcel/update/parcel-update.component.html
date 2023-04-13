@@ -1,0 +1,386 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-parcel-heading" data-cy="ParcelCreateUpdateHeading" jhiTranslate="smsbackendApp.parcel.home.createOrEditLabel">
+        Create or edit a Parcel
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.sender_name" for="field_sender_name">Sender Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sender_name"
+            id="field_sender_name"
+            data-cy="sender_name"
+            formControlName="sender_name"
+          />
+          <div *ngIf="editForm.get('sender_name')!.invalid && (editForm.get('sender_name')!.dirty || editForm.get('sender_name')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sender_name')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.sender_email" for="field_sender_email">Sender Email</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sender_email"
+            id="field_sender_email"
+            data-cy="sender_email"
+            formControlName="sender_email"
+          />
+          <div
+            *ngIf="editForm.get('sender_email')!.invalid && (editForm.get('sender_email')!.dirty || editForm.get('sender_email')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sender_email')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sender_email')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Sender Email' }"
+            >
+              This field should follow pattern for Sender Email.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.sender_address" for="field_sender_address">Sender Address</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sender_address"
+            id="field_sender_address"
+            data-cy="sender_address"
+            formControlName="sender_address"
+          />
+          <div
+            *ngIf="
+              editForm.get('sender_address')!.invalid && (editForm.get('sender_address')!.dirty || editForm.get('sender_address')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sender_address')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.sender_phone_no" for="field_sender_phone_no">Sender Phone No</label>
+          <input
+            type="text"
+            class="form-control"
+            name="sender_phone_no"
+            id="field_sender_phone_no"
+            data-cy="sender_phone_no"
+            formControlName="sender_phone_no"
+          />
+          <div
+            *ngIf="
+              editForm.get('sender_phone_no')!.invalid &&
+              (editForm.get('sender_phone_no')!.dirty || editForm.get('sender_phone_no')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sender_phone_no')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sender_phone_no')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 8 }"
+            >
+              This field is required to be at least 8 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sender_phone_no')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 15 }"
+            >
+              This field cannot be longer than 15 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('sender_phone_no')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Sender Phone No' }"
+            >
+              This field should follow pattern for Sender Phone No.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.receiver_name" for="field_receiver_name">Receiver Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="receiver_name"
+            id="field_receiver_name"
+            data-cy="receiver_name"
+            formControlName="receiver_name"
+          />
+          <div
+            *ngIf="
+              editForm.get('receiver_name')!.invalid && (editForm.get('receiver_name')!.dirty || editForm.get('receiver_name')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('receiver_name')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.receiver_email" for="field_receiver_email">Receiver Email</label>
+          <input
+            type="text"
+            class="form-control"
+            name="receiver_email"
+            id="field_receiver_email"
+            data-cy="receiver_email"
+            formControlName="receiver_email"
+          />
+          <div
+            *ngIf="
+              editForm.get('receiver_email')!.invalid && (editForm.get('receiver_email')!.dirty || editForm.get('receiver_email')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('receiver_email')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('receiver_email')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Receiver Email' }"
+            >
+              This field should follow pattern for Receiver Email.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.receiver_address" for="field_receiver_address"
+            >Receiver Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="receiver_address"
+            id="field_receiver_address"
+            data-cy="receiver_address"
+            formControlName="receiver_address"
+          />
+          <div
+            *ngIf="
+              editForm.get('receiver_address')!.invalid &&
+              (editForm.get('receiver_address')!.dirty || editForm.get('receiver_address')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('receiver_address')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.receiver_phone_no" for="field_receiver_phone_no"
+            >Receiver Phone No</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="receiver_phone_no"
+            id="field_receiver_phone_no"
+            data-cy="receiver_phone_no"
+            formControlName="receiver_phone_no"
+          />
+          <div
+            *ngIf="
+              editForm.get('receiver_phone_no')!.invalid &&
+              (editForm.get('receiver_phone_no')!.dirty || editForm.get('receiver_phone_no')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('receiver_phone_no')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('receiver_phone_no')?.errors?.minlength"
+              jhiTranslate="entity.validation.minlength"
+              [translateValues]="{ min: 8 }"
+            >
+              This field is required to be at least 8 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('receiver_phone_no')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 15 }"
+            >
+              This field cannot be longer than 15 characters.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('receiver_phone_no')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Receiver Phone No' }"
+            >
+              This field should follow pattern for Receiver Phone No.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.parcel_name" for="field_parcel_name">Parcel Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="parcel_name"
+            id="field_parcel_name"
+            data-cy="parcel_name"
+            formControlName="parcel_name"
+          />
+          <div *ngIf="editForm.get('parcel_name')!.invalid && (editForm.get('parcel_name')!.dirty || editForm.get('parcel_name')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('parcel_name')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.parcel_type" for="field_parcel_type">Parcel Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="parcel_type"
+            id="field_parcel_type"
+            data-cy="parcel_type"
+            formControlName="parcel_type"
+          />
+          <div *ngIf="editForm.get('parcel_type')!.invalid && (editForm.get('parcel_type')!.dirty || editForm.get('parcel_type')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('parcel_type')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.parcel_weight_in_kg" for="field_parcel_weight_in_kg"
+            >Parcel Weight In Kg</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="parcel_weight_in_kg"
+            id="field_parcel_weight_in_kg"
+            data-cy="parcel_weight_in_kg"
+            formControlName="parcel_weight_in_kg"
+          />
+          <div
+            *ngIf="
+              editForm.get('parcel_weight_in_kg')!.invalid &&
+              (editForm.get('parcel_weight_in_kg')!.dirty || editForm.get('parcel_weight_in_kg')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('parcel_weight_in_kg')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('parcel_weight_in_kg')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="smsbackendApp.parcel.status" for="field_status">Status</label>
+          <input type="text" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('status')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

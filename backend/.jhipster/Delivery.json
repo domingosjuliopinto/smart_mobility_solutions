@@ -1,0 +1,50 @@
+{
+  "changelogDate": "20230402140235",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "parcel_id",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "driver_id",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "request_time",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "assigned_time",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "estimated_time",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "ended_time",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "star_received",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "5",
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "delivery_status",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Delivery",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

@@ -1,0 +1,35 @@
+{
+  "smsbackendApp": {
+    "parcel": {
+      "home": {
+        "title": "Parcels",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Parcel",
+        "createOrEditLabel": "Create or edit a Parcel",
+        "notFound": "No Parcels found"
+      },
+      "created": "A new Parcel is created with identifier {{ param }}",
+      "updated": "A Parcel is updated with identifier {{ param }}",
+      "deleted": "A Parcel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Parcel {{ id }}?"
+      },
+      "detail": {
+        "title": "Parcel"
+      },
+      "id": "ID",
+      "sender_name": "Sender Name",
+      "sender_email": "Sender Email",
+      "sender_address": "Sender Address",
+      "sender_phone_no": "Sender Phone No",
+      "receiver_name": "Receiver Name",
+      "receiver_email": "Receiver Email",
+      "receiver_address": "Receiver Address",
+      "receiver_phone_no": "Receiver Phone No",
+      "parcel_name": "Parcel Name",
+      "parcel_type": "Parcel Type",
+      "parcel_weight_in_kg": "Parcel Weight In Kg",
+      "status": "Status"
+    }
+  }
+}
