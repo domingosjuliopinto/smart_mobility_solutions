@@ -1,0 +1,22 @@
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar class="ion-padding">
+      <ion-buttons slot="start" routerLink="/tabs/home">
+        <ion-icon name="arrow-back-outline" class="back"></ion-icon>
+      </ion-buttons>
+      <ion-title class="title">Unauthorized Access</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content scroll-y="true" class="ion-padding">
+    <div class="screen__background_back">
+      <span class="screen__background__shape screen__background__shape4_back"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+    <h1>This parcel is not authorized to you</h1>
+    <br />
+    <ion-button class="ion-padding" expand="block" fill="outline" (click)="goBackToHomePage()">Go back to home page</ion-button>
+  </ion-content>
+</ion-app>

@@ -1,0 +1,83 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>sboneb</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> </ion-content> -->
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar class="ion-padding">
+      <ion-buttons slot="start" routerLink="/tabs/home">
+        <ion-icon name="arrow-back-outline" class="back"></ion-icon>
+      </ion-buttons>
+      <ion-title class="title">Locate Your Parcel</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content scroll-y="false" class="ion-padding">
+    <div class="screen__background_back">
+      <span class="screen__background__shape screen__background__shape4_back"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+
+    <ion-card>
+      <!-- <ion-card-header> -->
+      <!-- <ion-card-title>Parcel Name</ion-card-title>
+        &nbsp;
+        <ion-card-subtitle>SENDER'S UIN</ion-card-subtitle>
+        &nbsp;
+        <ion-card-subtitle>RECEIVER'S UIN</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        
+      </ion-card-content> -->
+      <ion-grid>
+        <ion-row>
+          <ion-col>Parcel Details</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Package Name</ion-col>
+          <ion-col>2</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Package Type</ion-col>
+          <ion-col>2</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Sender's UIN</ion-col>
+          <ion-col>2</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Sender's Phone No.</ion-col>
+          <ion-col>2</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Estimated Date of Arrival</ion-col>
+          <ion-col>2</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-text id="pop-button">Status</ion-text>
+            <!-- <ion-popover trigger="pop-button" size="cover">
+              <ng-template>
+                <ion-content class="ion-padding">Hello!</ion-content>
+              </ng-template>
+            </ion-popover> -->
+            <ion-popover trigger="pop-button" side="bottom" alignment="center">
+              <ng-template>
+                <ion-content class="ion-padding custom__text">Hello Styled World!</ion-content>
+              </ng-template>
+            </ion-popover>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-content>
+</ion-app>

@@ -1,0 +1,85 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-padding">
+    <ion-buttons slot="start" routerLink="/tabs/parcel">
+      <ion-icon name="arrow-back-outline" class="back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="title">Parcel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" scroll-y="false">
+  <div class="screen__background_back">
+    <span class="screen__background__shape screen__background__shape4_back"></span>
+    <span class="screen__background__shape screen__background__shape3"></span>
+    <span class="screen__background__shape screen__background__shape2"></span>
+    <span class="screen__background__shape screen__background__shape1"></span>
+  </div>
+
+  <ion-card>
+    <!-- <ion-card-header> -->
+    <!-- <ion-card-title>Parcel Name</ion-card-title>
+      &nbsp;
+      <ion-card-subtitle>SENDER'S UIN</ion-card-subtitle>
+      &nbsp;
+      <ion-card-subtitle>RECEIVER'S UIN</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      
+    </ion-card-content> -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>Parcel ID : {{parcel.id}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Parcel Name</ion-col>
+        <ion-col>{{parcel.parcel_name}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Parcel Type</ion-col>
+        <ion-col>{{parcel.parcel_type}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Parcel Weight</ion-col>
+        <ion-col>{{parcel.parcel_weight_in_kg}} Kg</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Status</ion-col>
+        <ion-col>{{parcel.status}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text id="receiver_pop-button">Receiver Details</ion-text>
+          <!-- <ion-popover trigger="pop-button" size="cover">
+            <ng-template>
+              <ion-content class="ion-padding">Hello!</ion-content>
+            </ng-template>
+          </ion-popover> -->
+          <ion-popover trigger="receiver_pop-button" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding custom__text">
+                Receiver Name : {{parcel.receiver_name}}<br /><br />
+                Receiver Email : {{parcel.receiver_email}}<br /><br />
+                Receiver Address : {{parcel.receiver_address}}<br /><br />
+                Receiver Phone No : {{parcel.receiver_phone_no}}
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+        <ion-col>
+          <ion-text id="sender_pop-button">Sender Details</ion-text>
+          <ion-popover trigger="sender_pop-button" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding custom__text">
+                Sender Name : {{parcel.sender_name}}<br /><br />
+                Sender Email : {{parcel.sender_email}}<br /><br />
+                Sender Address : {{parcel.sender_address}}<br /><br />
+                Sender Phone No : {{parcel.sender_phone_no}}
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

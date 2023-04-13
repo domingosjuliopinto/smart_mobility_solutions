@@ -1,0 +1,45 @@
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar class="ion-padding">
+      <ion-buttons slot="start" routerLink="/tabs/home">
+        <ion-icon name="arrow-back-outline" class="back"></ion-icon>
+      </ion-buttons>
+      <ion-title class="title">{{ 'TAB3_TITLE' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content scroll-y="false">
+    <div class="screen__background_back">
+      <span class="screen__background__shape screen__background__shape4_back"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+
+    <ion-avatar class="avatar_settings">
+      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <ion-list class="form__page" lines="none">
+      <ion-item>
+        <ion-title slot="start"> First Name: </ion-title>
+        <ion-title slot="end"> {{account?.firstName}} </ion-title>
+      </ion-item>
+      <ion-item>
+        <ion-title slot="start"> Last Name: </ion-title>
+        <ion-title slot="end"> {{account?.lastName}} </ion-title>
+      </ion-item>
+      <ion-item>
+        <ion-title slot="start"> Email: </ion-title>
+        <ion-title slot="end"> {{account?.email}} </ion-title>
+      </ion-item>
+      <ion-item>
+        <ion-title slot="start"> Account Status: </ion-title>
+        <ion-title slot="end"> {{account?.activated ? "YES ✅" : "NO ❌"}} </ion-title>
+      </ion-item>
+      <ion-item>
+        <ion-title slot="start"> Account Role: </ion-title>
+        <ion-title slot="end"> {{account?.authorities}} </ion-title>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-app>

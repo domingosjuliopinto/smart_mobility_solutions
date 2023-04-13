@@ -1,0 +1,43 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>selfnavig</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content> </ion-content> -->
+<ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar class="ion-padding">
+      <ion-buttons slot="start" routerLink="/tabs/home">
+        <ion-icon name="arrow-back-outline" class="back"></ion-icon>
+      </ion-buttons>
+      <ion-title class="title">Self Navigating Services</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content scroll-y="true" class="ion-padding">
+    <div class="screen__background_back">
+      <span class="screen__background__shape screen__background__shape4_back"></span>
+      <span class="screen__background__shape screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+    <form class="sbonea__form background__class">
+      <ion-item fill="outline">
+        <ion-label position="floating">Starting Location</ion-label>
+        <ion-input placeholder="Enter Starting Location Address" required></ion-input>
+      </ion-item>
+      &nbsp;
+      <ion-item fill="outline">
+        <ion-label position="floating">Destination</ion-label>
+        <ion-input placeholder="Enter Destination Address" required></ion-input>
+      </ion-item>
+      &nbsp;
+
+      <ion-button (click)="goToMapPage()" class="ion-padding" expand="block" fill="outline">Submit</ion-button>
+    </form>
+  </ion-content>
+</ion-app>

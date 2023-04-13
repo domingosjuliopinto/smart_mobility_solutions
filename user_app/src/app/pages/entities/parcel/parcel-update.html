@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-padding">
+    <ion-buttons slot="start" routerLink="/tabs/home">
+      <ion-icon name="arrow-back-outline" class="back"></ion-icon>
+    </ion-buttons>
+    <ion-title class="title">Enter Parcel Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary" class="ion-padding" expand="block" fill="outline">
+        <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+        Submit
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="screen__background_back">
+    <span class="screen__background__shape screen__background__shape4_back"></span>
+    <span class="screen__background__shape screen__background__shape3"></span>
+    <span class="screen__background__shape screen__background__shape2"></span>
+    <span class="screen__background__shape screen__background__shape1"></span>
+  </div>
+  <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()" class="sbonea__form background__class">
+    &nbsp;
+    <ion-item [hidden]="!form.id">
+      <ion-label>ID</ion-label>
+      <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Sender Name</ion-label>
+      <ion-input type="text" name="sender_name" formControlName="sender_name"></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-input type="text" name="sender_email" placeholder="{{this.disabled_sender_email}}" disabled></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Sender Address</ion-label>
+      <ion-input type="text" name="sender_address" formControlName="sender_address"></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Sender Phone No</ion-label>
+      <ion-input type="number" name="sender_phone_no" formControlName="sender_phone_no"></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Receiver Name</ion-label>
+      <ion-input type="text" name="receiver_name" formControlName="receiver_name"></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Receiver Email</ion-label>
+      <ion-input type="text" name="receiver_email" formControlName="receiver_email"></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Receiver Address</ion-label>
+      <ion-input type="text" name="receiver_address" formControlName="receiver_address"></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Receiver Phone No</ion-label>
+      <ion-input type="number" name="receiver_phone_no" formControlName="receiver_phone_no"></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Parcel Name</ion-label>
+      <ion-input type="text" name="parcel_name" formControlName="parcel_name"></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Parcel Type</ion-label>
+      <ion-select
+        name="parcel_type"
+        formControlName="parcel_type"
+        placeholder="Select Parcel Type"
+        [interfaceOptions]="customAlertOptions"
+        interface="alert"
+      >
+        <ion-select-option value="Documents">Documents</ion-select-option>
+        <ion-select-option value="Electronic Items">Electronic Items</ion-select-option>
+        <ion-select-option value="Heavy Items">Heavy Items</ion-select-option>
+        <ion-select-option value="Light Items">Light Items</ion-select-option>
+      </ion-select>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Parcel Weight In Kg</ion-label>
+      <ion-input type="number" name="parcel_weight_in_kg" formControlName="parcel_weight_in_kg"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>

@@ -1,0 +1,39 @@
+.hipster {
+  // display: block;
+  // width: 429px;
+  height: 20%;
+  // margin-top: auto;
+  // margin-bottom: auto;
+  background: url('../../../assets/img/welcome.svg') no-repeat center top;
+  // background-size: contain;
+  display: block;
+  margin: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+ion-content.background {
+  --ion-background-color: #ffffff;
+}
+
+.logup {
+  margin: 5%;
+}
+
+.msgcenter {
+  font-size: medium;
+  text-align: center;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .hipster {
+    background: url('../../../assets/img/welcome.svg') no-repeat center top;
+    background-size: contain;
+  }
+}
