@@ -1,0 +1,68 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar class="ion-padding">
+      <ion-buttons slot="start" routerLink="/">
+        <ion-icon name="arrow-back-outline" class="back"></ion-icon>
+      </ion-buttons>
+      <ion-title class="title">{{ 'LOGIN_TITLE' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="screen__background_back">
+    <span class="screen__background__shape screen__background__shape4_back"></span>
+    <span class="screen__background__shape screen__background__shape3"></span>
+    <!-- <span class="screen__background__shape screen__background__shape2"></span> -->
+    <span class="screen__background__shape screen__background__shape1"></span>
+    <div class="container">
+      <div class="screen">
+        <div class="screen__content">
+          <form class="login" (submit)="doLogin()">
+            <div class="login__field">
+              <ion-icon class="login__icon" size="small" name="person-sharp"></ion-icon>
+              <ion-input
+                type="text"
+                [(ngModel)]="account.username"
+                name="username"
+                class="login__input"
+                placeholder="Email"
+                required
+              ></ion-input>
+            </div>
+            <div class="login__field">
+              <ion-icon class="login__icon" size="small" name="lock-closed-sharp"></ion-icon>
+              <ion-input
+                type="password"
+                [(ngModel)]="account.password"
+                name="password"
+                class="login__input"
+                placeholder="Password"
+                required
+              ></ion-input>
+            </div>
+            <button class="button login__submit" type="submit" id="login">
+              <span class="button__text">Log In Now</span>
+              <ion-icon class="btn__login" name="chevron-forward-outline"></ion-icon>
+            </button>
+            <button class="button login__submit">
+              <span class="button__text">Forgot Password ?</span>
+            </button>
+          </form>
+          <!-- <div class="social-login">
+      <h3>log in via</h3>
+      <div class="social-icons">
+        <a href="#" class="social-login__icon fab fa-instagram"></a>
+        <a href="#" class="social-login__icon fab fa-facebook"></a>
+        <a href="#" class="social-login__icon fab fa-twitter"></a>
+      </div>
+    </div> -->
+        </div>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-app>

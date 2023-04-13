@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Delivery</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="fixed">ID</ion-label>
+      <div item-content>
+        <span id="id-content">{{delivery.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Parcel Id</ion-label>
+      <div item-content>
+        <span id="parcel_id-content">{{delivery.parcel_id}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Driver Id</ion-label>
+      <div item-content>
+        <span id="driver_id-content">{{delivery.driver_id}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Request Time</ion-label>
+      <div item-content>
+        <span id="request_time-content">{{delivery.request_time | date:'medium'}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Assigned Time</ion-label>
+      <div item-content>
+        <span id="assigned_time-content">{{delivery.assigned_time | date:'medium'}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Estimated Time</ion-label>
+      <div item-content>
+        <span id="estimated_time-content">{{delivery.estimated_time | date:'medium'}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Ended Time</ion-label>
+      <div item-content>
+        <span id="ended_time-content">{{delivery.ended_time | date:'medium'}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Star Received</ion-label>
+      <div item-content>
+        <span id="star_received-content">{{delivery.star_received}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Delivery Status</ion-label>
+      <div item-content>
+        <span id="delivery_status-content">{{delivery.delivery_status}}</span>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" (click)="open(delivery)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteModal(delivery)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+</ion-content>

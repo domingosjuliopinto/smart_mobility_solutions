@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Fleet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="fixed">ID</ion-label>
+      <div item-content>
+        <span id="id-content">{{fleet.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Driver Name</ion-label>
+      <div item-content>
+        <span id="driver_name-content">{{fleet.driver_name}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Driver Email</ion-label>
+      <div item-content>
+        <span id="driver_email-content">{{fleet.driver_email}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Driver Address</ion-label>
+      <div item-content>
+        <span id="driver_address-content">{{fleet.driver_address}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Driver Phone No</ion-label>
+      <div item-content>
+        <span id="driver_phone_no-content">{{fleet.driver_phone_no}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Vehicle Plate No</ion-label>
+      <div item-content>
+        <span id="vehicle_plate_no-content">{{fleet.vehicle_plate_no}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Vehicle Type</ion-label>
+      <div item-content>
+        <span id="vehicle_type-content">{{fleet.vehicle_type}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Vehicle Status</ion-label>
+      <div item-content>
+        <span id="vehicle_status-content">{{fleet.vehicle_status}}</span>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" (click)="open(fleet)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteModal(fleet)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+</ion-content>
