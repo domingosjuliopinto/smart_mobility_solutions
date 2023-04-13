@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, Platform, IonItemSliding } from '@ionic/angular';
-import { filter, map } from 'rxjs/operators';
+import { bufferWhen, filter, map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { Parcel } from './parcel.model';
 import { ParcelService } from './parcel.service';
@@ -38,9 +38,13 @@ export class ParcelPage {
   }
 
   account: Account;
-  sent_parcel_count = false;
-  received_parcel_count = false;
-  parcel_history = 0;
+
+  job_count = false;
+  job_history = 0;
+  i = 0;
+  j = 0;
+  drive_id = 0;
+  pararr = [];
 
   ngOnInit() {
     this.accountService.identity().then(account => {
@@ -53,20 +57,23 @@ export class ParcelPage {
   }
 
   async ionViewWillEnter() {
-    await this.loadAll2();
     await this.loadAll3();
+    await this.loadAll2();
     await this.loadAll();
   }
 
   ionViewDidEnter() {
     setTimeout(() => {
+      this.currentjob();
+    }, 300);
+    setTimeout(()=>{
       const sentparcelid = document.getElementById('sentparcelid');
       if (!sentparcelid) {
-        this.sent_parcel_count = true;
+        this.job_count = true;
       } else {
-        this.sent_parcel_count = false;
+        this.job_count = false;
       }
-    }, 300);
+    },350);
   }
 
   async loadAll(refresher?) {
@@ -141,6 +148,19 @@ export class ParcelPage {
       );
   }
 
+  currentjob(){
+    for(this.i=0;this.i<this.fleets?.length;this.i++){
+      if(this.fleets[this.i].driver_email==this.account.email){
+        this.drive_id = this.fleets[this.i].id;
+      }
+    }
+    for(this.j=0;this.j<this.deliveries?.length;this.j++){
+      if(this.deliveries[this.j].driver_id==this.drive_id){
+        this.pararr.push(this.deliveries[this.j].parcel_id)
+      }
+    }
+  }
+
   trackId(index: number, item: Parcel) {
     return item.id;
   }
@@ -174,23 +194,23 @@ export class ParcelPage {
   }
 
   async historyview(number) {
-    this.parcel_history = number;
-    if (this.parcel_history == 0) {
+    this.job_history = number;
+    if (this.job_history == 0) {
       setTimeout(() => {
         const sentparcelid = document.getElementById('sentparcelid');
         if (!sentparcelid) {
-          this.sent_parcel_count = true;
+          this.job_count = true;
         } else {
-          this.sent_parcel_count = false;
+          this.job_count = false;
         }
       }, 10);
-    } else if (this.parcel_history == 1) {
+    } else if (this.job_history == 1) {
       setTimeout(() => {
         const receivedparcelid = document.getElementById('receivedparcelid');
         if (!receivedparcelid) {
-          this.received_parcel_count = true;
+          this.job_count = true;
         } else {
-          this.received_parcel_count = false;
+          this.job_count = false;
         }
       }, 10);
     }

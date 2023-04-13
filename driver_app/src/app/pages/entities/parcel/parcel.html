@@ -33,12 +33,12 @@
   <ion-button (click)="historyview(0)">Current Job</ion-button>
   <ion-button (click)="historyview(1)">Past Jobs</ion-button>
 
-  <div *ngIf="parcel_history == 0">
+  <div *ngIf="job_history == 0">
     <br />
     <ion-label>Current Job Assigned</ion-label>
     <ion-card *ngFor="let parcel of parcels; trackBy: trackId">
       <!-- Check parcel-detail.html for comments -->
-      <ion-grid (click)="view(parcel)" *ngIf="parcel.sender_email==account.email">
+      <ion-grid (click)="view(parcel)" *ngIf="pararr.includes(parcel.id) && parcel.status != 'Completed'">
         <ion-row>
           <ion-col><div id="sentparcelid">ID : {{parcel.id}}</div></ion-col>
         </ion-row>
@@ -64,16 +64,16 @@
         </ion-row>
       </ion-grid>
     </ion-card>
-    <div class="ion-text-center" *ngIf="!parcels?.length || sent_parcel_count">
+    <div class="ion-text-center" *ngIf="!parcels?.length || job_count">
       <ion-label> No Current Jobs </ion-label>
     </div>
   </div>
-  <div *ngIf="parcel_history == 1">
+  <div *ngIf="job_history == 1">
     <br />
     <ion-label>Past Jobs History</ion-label>
     <ion-card *ngFor="let parcel of parcels; trackBy: trackId">
       <!-- Check parcel-detail.html for comments -->
-      <ion-grid (click)="view(parcel)" *ngIf="parcel.receiver_email==account.email">
+      <ion-grid (click)="view(parcel)" *ngIf="pararr.includes(parcel.id) && parcel.status == 'Completed'">
         <ion-row>
           <ion-col><div id="receivedparcelid">ID : {{parcel.id}}</div></ion-col>
         </ion-row>
@@ -99,7 +99,7 @@
         </ion-row>
       </ion-grid>
     </ion-card>
-    <div class="ion-text-center" *ngIf="!parcels?.length || received_parcel_count">
+    <div class="ion-text-center" *ngIf="!parcels?.length || job_count">
       <ion-label> No Past Jobs</ion-label>
     </div>
   </div>
