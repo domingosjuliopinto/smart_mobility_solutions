@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Parcel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="fixed">ID</ion-label>
+      <div item-content>
+        <span id="id-content">{{parcel.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Sender Name</ion-label>
+      <div item-content>
+        <span id="sender_name-content">{{parcel.sender_name}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Sender Email</ion-label>
+      <div item-content>
+        <span id="sender_email-content">{{parcel.sender_email}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Sender Address</ion-label>
+      <div item-content>
+        <span id="sender_address-content">{{parcel.sender_address}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Sender Phone No</ion-label>
+      <div item-content>
+        <span id="sender_phone_no-content">{{parcel.sender_phone_no}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Receiver Name</ion-label>
+      <div item-content>
+        <span id="receiver_name-content">{{parcel.receiver_name}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Receiver Email</ion-label>
+      <div item-content>
+        <span id="receiver_email-content">{{parcel.receiver_email}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Receiver Address</ion-label>
+      <div item-content>
+        <span id="receiver_address-content">{{parcel.receiver_address}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Receiver Phone No</ion-label>
+      <div item-content>
+        <span id="receiver_phone_no-content">{{parcel.receiver_phone_no}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Parcel Name</ion-label>
+      <div item-content>
+        <span id="parcel_name-content">{{parcel.parcel_name}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Parcel Type</ion-label>
+      <div item-content>
+        <span id="parcel_type-content">{{parcel.parcel_type}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Parcel Weight In Kg</ion-label>
+      <div item-content>
+        <span id="parcel_weight_in_kg-content">{{parcel.parcel_weight_in_kg}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Status</ion-label>
+      <div item-content>
+        <span id="status-content">{{parcel.status}}</span>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" (click)="open(parcel)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteModal(parcel)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+</ion-content>
