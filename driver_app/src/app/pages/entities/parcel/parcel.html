@@ -38,7 +38,7 @@
     <ion-label>Current Job Assigned</ion-label>
     <ion-card *ngFor="let parcel of parcels; trackBy: trackId">
       <!-- Check parcel-detail.html for comments -->
-      <ion-grid (click)="view(parcel)" *ngIf="pararr.includes(parcel.id) && parcel.status != 'Completed'">
+      <ion-grid (click)="edit(parcel)" *ngIf="pararr.includes(parcel.id) && parcel.status != 'Completed'">
         <ion-row>
           <ion-col><div id="sentparcelid">ID : {{parcel.id}}</div></ion-col>
         </ion-row>
@@ -51,8 +51,24 @@
           <ion-col>{{parcel.parcel_type}}</ion-col>
         </ion-row>
         <ion-row>
+          <ion-col>Sender Name</ion-col>
+          <ion-col>{{parcel.sender_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Sender Address</ion-col>
+          <ion-col>{{parcel.sender_address}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Sender Phone No</ion-col>
+          <ion-col>{{parcel.sender_phone_no}}</ion-col>
+        </ion-row>
+        <ion-row>
           <ion-col>Receiver Name</ion-col>
           <ion-col>{{parcel.receiver_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Receiver Address</ion-col>
+          <ion-col>{{parcel.receiver_address}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Receiver Phone No</ion-col>
@@ -90,8 +106,24 @@
           <ion-col>{{parcel.sender_name}}</ion-col>
         </ion-row>
         <ion-row>
+          <ion-col>Sender Address</ion-col>
+          <ion-col>{{parcel.sender_address}}</ion-col>
+        </ion-row>
+        <ion-row>
           <ion-col>Sender Phone No</ion-col>
           <ion-col>{{parcel.sender_phone_no}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Receiver Name</ion-col>
+          <ion-col>{{parcel.receiver_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Receiver Address</ion-col>
+          <ion-col>{{parcel.receiver_address}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Receiver Phone No</ion-col>
+          <ion-col>{{parcel.receiver_phone_no}}</ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Status</ion-col>

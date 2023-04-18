@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, Platform, IonItemSliding } from '@ionic/angular';
-import { bufferWhen, filter, map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { Parcel } from './parcel.model';
 import { ParcelService } from './parcel.service';
@@ -68,7 +68,8 @@ export class ParcelPage {
     }, 300);
     setTimeout(()=>{
       const sentparcelid = document.getElementById('sentparcelid');
-      if (!sentparcelid) {
+      const receivedparcelid = document.getElementById('receivedparcelid');
+      if (!sentparcelid && !receivedparcelid) {
         this.job_count = true;
       } else {
         this.job_count = false;
@@ -169,9 +170,8 @@ export class ParcelPage {
     await this.navController.navigateForward('/tabs/parcel/new');
   }
 
-  async edit(item: IonItemSliding, parcel: Parcel) {
+  async edit(parcel: Parcel) {
     await this.navController.navigateForward('/tabs/parcel/' + parcel.id + '/edit');
-    await item.close();
   }
 
   async delete(parcel) {

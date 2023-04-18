@@ -10,12 +10,14 @@ import { ParcelService } from './parcel.service';
 @Component({
   selector: 'page-parcel-update',
   templateUrl: 'parcel-update.html',
+  styleUrls: ['parcel-update.scss','parcel-detail.scss'],
 })
 export class ParcelUpdatePage implements OnInit {
   parcel: Parcel;
   isSaving = false;
   isNew = true;
   isReadyToSave: boolean;
+  change = null;
 
   form = this.formBuilder.group({
     id: [null, []],
@@ -98,7 +100,17 @@ export class ParcelUpdatePage implements OnInit {
     this.isSaving = false;
     const toast = await this.toastCtrl.create({ message: `Parcel ${action} successfully.`, duration: 2000, position: 'middle' });
     await toast.present();
-    await this.navController.navigateBack('/tabs/entities/parcel');
+    await this.navController.navigateBack('/tabs/parcel');
+  }
+
+  pwd(){
+    this.change = "Parcel with Driver"
+    this.save()
+  }
+
+  pc(){
+    this.change = "Completed"
+    this.save()
   }
 
   previousState() {
@@ -127,7 +139,7 @@ export class ParcelUpdatePage implements OnInit {
       parcel_name: this.form.get(['parcel_name']).value,
       parcel_type: this.form.get(['parcel_type']).value,
       parcel_weight_in_kg: this.form.get(['parcel_weight_in_kg']).value,
-      status: this.form.get(['status']).value,
+      status: this.change?this.change:this.form.get(['status']).value,
     };
   }
 }

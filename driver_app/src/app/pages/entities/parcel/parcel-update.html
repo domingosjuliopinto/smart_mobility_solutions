@@ -1,74 +1,112 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-padding">
+    <ion-buttons slot="start" routerLink="/tabs/parcel">
+      <ion-icon name="arrow-back-outline" class="back"></ion-icon>
     </ion-buttons>
-    <ion-title>Parcel</ion-title>
-
-    <ion-buttons slot="end">
-      <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
-        <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
-        <ion-icon name="checkmark" *ngIf="!platform.is('ios')"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title class="title">Change Parcel Status</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
-    <ion-list>
-      <ion-item [hidden]="!form.id">
-        <ion-label>ID</ion-label>
-        <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Sender Name</ion-label>
-        <ion-input type="text" name="sender_name" formControlName="sender_name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Sender Email</ion-label>
-        <ion-input type="text" name="sender_email" formControlName="sender_email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Sender Address</ion-label>
-        <ion-input type="text" name="sender_address" formControlName="sender_address"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Sender Phone No</ion-label>
-        <ion-input type="text" name="sender_phone_no" formControlName="sender_phone_no"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Receiver Name</ion-label>
-        <ion-input type="text" name="receiver_name" formControlName="receiver_name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Receiver Email</ion-label>
-        <ion-input type="text" name="receiver_email" formControlName="receiver_email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Receiver Address</ion-label>
-        <ion-input type="text" name="receiver_address" formControlName="receiver_address"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Receiver Phone No</ion-label>
-        <ion-input type="text" name="receiver_phone_no" formControlName="receiver_phone_no"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Parcel Name</ion-label>
-        <ion-input type="text" name="parcel_name" formControlName="parcel_name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Parcel Type</ion-label>
-        <ion-input type="text" name="parcel_type" formControlName="parcel_type"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Parcel Weight In Kg</ion-label>
-        <ion-input type="number" name="parcel_weight_in_kg" formControlName="parcel_weight_in_kg"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Status</ion-label>
-        <ion-input type="text" name="status" formControlName="status"></ion-input>
-      </ion-item>
-    </ion-list>
-  </form>
+  <div class="screen__background_back">
+    <span class="screen__background__shape screen__background__shape4_back"></span>
+    <span class="screen__background__shape screen__background__shape3"></span>
+    <span class="screen__background__shape screen__background__shape2"></span>
+    <span class="screen__background__shape screen__background__shape1"></span>
+  </div>
+  <ion-card>
+    <!-- <ion-card-header> -->
+    <!-- <ion-card-title>Parcel Name</ion-card-title>
+      &nbsp;
+      <ion-card-subtitle>SENDER'S UIN</ion-card-subtitle>
+      &nbsp;
+      <ion-card-subtitle>RECEIVER'S UIN</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      
+    </ion-card-content> -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>Parcel ID : {{parcel.id}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Parcel Name</ion-col>
+        <ion-col>{{parcel.parcel_name}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Parcel Type</ion-col>
+        <ion-col>{{parcel.parcel_type}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Parcel Weight</ion-col>
+        <ion-col>{{parcel.parcel_weight_in_kg}} Kg</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Status</ion-col>
+        <ion-col>{{parcel.status}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text id="receiver_pop-button">Receiver Details</ion-text>
+          <!-- <ion-popover trigger="pop-button" size="cover">
+            <ng-template>
+              <ion-content class="ion-padding">Hello!</ion-content>
+            </ng-template>
+          </ion-popover> -->
+          <ion-popover trigger="receiver_pop-button" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding custom__text">
+                Receiver Name : {{parcel.receiver_name}}<br /><br />
+                Receiver Email : {{parcel.receiver_email}}<br /><br />
+                Receiver Address : {{parcel.receiver_address}}<br /><br />
+                Receiver Phone No : {{parcel.receiver_phone_no}}
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+        <ion-col>
+          <ion-text id="sender_pop-button">Sender Details</ion-text>
+          <ion-popover trigger="sender_pop-button" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding custom__text">
+                Sender Name : {{parcel.sender_name}}<br /><br />
+                Sender Email : {{parcel.sender_email}}<br /><br />
+                Sender Address : {{parcel.sender_address}}<br /><br />
+                Sender Phone No : {{parcel.sender_phone_no}}
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+ <!--<form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()" class="sbonea__form background__class">
+    &nbsp;
+    <ion-item [hidden]="!form.id">
+      <ion-label>ID</ion-label>
+      <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+    </ion-item>
+    &nbsp;
+    <ion-item fill="outline">
+      <ion-label position="floating">Status</ion-label>
+      <ion-input type="text" name="status" formControlName="status"></ion-input>
+    </ion-item>
+  </form>--> 
+  &nbsp;
+  <ion-buttons>
+    <div *ngIf="parcel.status=='Parcel with Sender'">
+    <ion-button [disabled]="!isReadyToSave" (click)="pwd()" color="primary" class="ion-padding" expand="block" fill="outline">
+      <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+      Change Status to<br>'Parcel with Driver'
+    </ion-button>
+    </div>
+    <div *ngIf="parcel.status=='Parcel with Driver'">
+      <ion-button [disabled]="!isReadyToSave" (click)="pc()" color="primary" class="ion-padding" expand="block" fill="outline">
+        <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+        Change Status to<br>'Completed'
+      </ion-button>
+    </div>
+  </ion-buttons>
+  
 </ion-content>
