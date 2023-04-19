@@ -4,11 +4,18 @@
       <ion-buttons slot="start" routerLink="/tabs/home">
         <ion-icon name="arrow-back-outline" class="back"></ion-icon>
       </ion-buttons>
-      <ion-title class="title">Driver Stats</ion-title>
+      <ion-title class="title">Fleet Stats</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+  <ion-content class="ion-padding">
+    <div class="screen__background_back">
+      <span class="screen__background__shape screen__background__shape4_back"></span>
+      <span class="screen__background__shapesmsv5/src/app/pages/home/home.page.ts screen__background__shape3"></span>
+      <span class="screen__background__shape screen__background__shape2"></span>
+      <span class="screen__background__shape screen__background__shape1"></span>
+    </div>
+    <div style="background-color: #F5FCFF;">
     <div>
       <div id="chart-container"></div>
     </div>
@@ -24,5 +31,6 @@
     <div>
       <div id="chart-container3"></div>
     </div>
+  </div>
   </ion-content>
 </ion-app>

@@ -75,75 +75,95 @@ export class DriverStatsPage implements OnInit{
     // set chart options
     const options: EChartsOption = {
       title: {
-        text: 'Success Rate of Delivery',
-        left: 'center'
+        text: 'Fleet Management',
+        left: 'center',
       },
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
       },
       legend: {
         top: '5%',
-        left: 'center'
+        left: 'center',
       },
       series: [
         {
           type: 'pie',
           radius: '50%',
           data: [
-            { value: 150, name: 'Delivery Late' },
-            { value: 1048, name: 'Delivery Successful' },
-            { value: 50, name: 'Delivery Issues' },
-            { value: 200, name: 'Delivery Failed' },
+            { value: 735, name: 'Fleet Occupied' },
+            { value: 1048, name: 'Fleet Free' },
+            { value: 580, name: 'Fleet Repairs' },
+            { value: 484, name: 'Fleet Accident' },
           ],
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
               shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        }
-      ]
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
     };
 
     const options1: EChartsOption = {
       title: {
-        text: 'Stars received for Delivery',
-        left: 'center'
+        text: 'Packages Delivered Per Day',
+        left: 'center',
       },
       xAxis: {
         type: 'category',
-        data: ['1', '2', '3', '4', '5']
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
       },
       series: [
         {
-          data: [120, 200, 150, 80, 70],
-          type: 'bar'
-        }
-      ]
+          data: [120, 200, 150, 80, 70, 110, 130],
+          type: 'bar',
+        },
+      ],
     };
 
     const options2: EChartsOption = {
       title: {
-        text: 'Average monthly time taken',
-        left: 'center'
+        text: 'Package Management',
+        left: 'center',
       },
-      xAxis: {
-        type: 'category',
-        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep', 'Oct', 'Nov', 'Dec']
+      tooltip: {
+        trigger: 'item',
       },
-      yAxis: {
-        type: 'value'
+      legend: {
+        top: '5%',
+        left: 'center',
       },
       series: [
         {
-          data: [15,30, 20, 40, 35, 30],
-          type: 'line'
-        }
-      ]
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center',
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: 40,
+              fontWeight: 'bold',
+            },
+          },
+          labelLine: {
+            show: false,
+          },
+          data: [
+            { value: 735, name: 'At Source' },
+            { value: 580, name: 'At Destination' },
+            { value: 1048, name: 'On the Way' },
+          ],
+        },
+      ],
     };
 
     const options3: EChartsOption = {
