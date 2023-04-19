@@ -44,6 +44,15 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'driverstats',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../driverstats/driverstats.module').then(m => m.DriverStatsPageModule),
+          },
+        ],
+      },
+      {
         path: 'map',
         children: [
           {

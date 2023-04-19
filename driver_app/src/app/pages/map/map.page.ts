@@ -1,77 +1,76 @@
-// import { Component } from '@angular/core';
-// import * as L from 'leaflet';
+import { Component } from '@angular/core';
+import * as L from 'leaflet';
 // import 'leaflet-draw';
+@Component({
+  selector: 'app-map',
+  templateUrl: 'map.page.html',
+  styleUrls: ['map.page.scss'],
+})
+export class MapPage {
+  map: L.Map;
 
-// @Component({
-//   selector: 'app-map',
-//   templateUrl: 'map.page.html',
-//   styleUrls: ['map.page.scss'],
-// })
-// export class MapPage {
-//   map: L.Map;
+  constructor() {}
 
-//   constructor() {}
+  ngOnInit() {
+    // this.map = L.map('map', {
+    //   center: [19.49308, 72.8550352],
+    //   zoom: 15,
+    //   renderer: L.canvas(),
+    // });
 
-//   ngOnInit() {
-//     // this.map = L.map('map', {
-//     //   center: [19.49308, 72.8550352],
-//     //   zoom: 15,
-//     //   renderer: L.canvas(),
-//     // });
+    const map = L.map('map');
+    // Initializes map
 
-//     const map = L.map('map');
-//     // Initializes map
+    map.setView([51.505, -0.09], 13);
+    // Sets initial coordinates and zoom level
 
-//     map.setView([51.505, -0.09], 13);
-//     // Sets initial coordinates and zoom level
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap',
+    }).addTo(map);
 
-//     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//       maxZoom: 19,
-//       attribution: '© OpenStreetMap',
-//     }).addTo(map);
+    let marker, circle, zoomed;
 
-//     let marker, circle, zoomed;
+    navigator.geolocation.watchPosition(success, error);
 
-//     navigator.geolocation.watchPosition(success, error);
+    function success(pos) {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      const accuracy = pos.coords.accuracy;
 
-//     function success(pos) {
-//       const lat = pos.coords.latitude;
-//       const lng = pos.coords.longitude;
-//       const accuracy = pos.coords.accuracy;
+      if (marker) {
+        map.removeLayer(marker);
+        map.removeLayer(circle);
+      }
+      // Removes any existing marker and circule (new ones about to be set)
 
-//       if (marker) {
-//         map.removeLayer(marker);
-//         map.removeLayer(circle);
-//       }
-//       // Removes any existing marker and circule (new ones about to be set)
+      marker = L.marker([lat, lng]).addTo(map);
+      circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
+      // Adds marker to the map and a circle for accuracy
 
-//       marker = L.marker([lat, lng]).addTo(map);
-//       circle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
-//       // Adds marker to the map and a circle for accuracy
+      if (!zoomed) {
+        zoomed = map.fitBounds(circle.getBounds());
+      }
+      // Set zoom to boundaries of accuracy circle
 
-//       if (!zoomed) {
-//         zoomed = map.fitBounds(circle.getBounds());
-//       }
-//       // Set zoom to boundaries of accuracy circle
+      map.setView([lat, lng]);
+      // Set map focus to current user position
+    }
+    // L.control.locate().addTo(map);
 
-//       map.setView([lat, lng]);
-//       // Set map focus to current user position
-//     }
-//     // L.control.locate().addTo(map);
+    function error(err) {
+      if (err.code === 1) {
+        alert('Please allow geolocation access');
+      } else {
+        alert('Cannot get current location');
+      }
+    }
 
-//     function error(err) {
-//       if (err.code === 1) {
-//         alert('Please allow geolocation access');
-//       } else {
-//         alert('Cannot get current location');
-//       }
-//     }
-
-//     setTimeout(() => {
-//       map.invalidateSize();
-//     }, 0);
-//   }
-// }
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 0);
+  }
+}
 
 // import { Component } from '@angular/core';
 // import * as L from 'leaflet';
@@ -163,28 +162,3 @@
 //   }, 0);
 //   }
 // }
-/*
-import { Component } from '@angular/core';
-import * as L from 'leaflet';
-import 'leaflet-draw';
-
-@Component({
-  selector: 'app-map',
-  templateUrl: 'map.page.html',
-  styleUrls: ['map.page.scss'],
-})
-export class MapPage {
-  // map: L.Map;
-
-  constructor() {}
-
-  ngOnInit() {
-    // var map = L.map('map').setView([38.69, -100.8], 5);
-    // L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=YJu6WjLDrxkKiBvM1Q3N', {
-    //   attribution: '© OpenStreetMap',
-    //   maxZoom: 19,
-    // }).addTo(map);
-    // var marker = L.marker([51.5, -0.09]).addTo(map);
-  }
-}
-*/

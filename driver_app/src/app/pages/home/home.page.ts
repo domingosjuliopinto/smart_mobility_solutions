@@ -41,7 +41,7 @@ export class HomePage implements OnInit {
         },
         {
           title: 'Work Stats',
-          url: '/tabs/checkstat',
+          url: '/tabs/driverstats',
           icon: 'stats-chart-outline',
         },
       ],

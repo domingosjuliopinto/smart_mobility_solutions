@@ -5,13 +5,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserRouteAccessService } from 'src/app/services/auth/user-route-access.service';
-//import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { MapPage } from './map.page';
+import { DriverStatsPage } from './driverstats.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: MapPage,
+    component: DriverStatsPage,
     data: {
       authorities: ['ROLE_USER'],
     },
@@ -21,6 +20,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, RouterModule.forChild(routes), TranslateModule],
-  declarations: [MapPage],
+  declarations: [DriverStatsPage],
 })
-export class MapPageModule {}
+export class DriverStatsPageModule {}

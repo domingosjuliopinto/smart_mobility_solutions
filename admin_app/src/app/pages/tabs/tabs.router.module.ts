@@ -26,6 +26,24 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'driverstats',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../driverstats/driverstats.module').then(m => m.DriverStatsPageModule),
+          },
+        ],
+      },
+      {
+        path: 'map',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../map/map.module').then(m => m.MapPageModule),
+          },
+        ],
+      },
+      {
         path: 'account',
         children: [
           {

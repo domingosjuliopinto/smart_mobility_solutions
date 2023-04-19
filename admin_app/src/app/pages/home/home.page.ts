@@ -34,14 +34,9 @@ export class HomePage implements OnInit {
           icon: 'cube-outline',
         },
         {
-          title: 'Locate Parcel',
-          url: '/tabs/sboneb',
-          icon: 'locate-outline',
-        },
-        {
-          title: 'Parcel History',
-          url: '/tabs/parcel',
-          icon: 'clipboard-outline',
+          title: 'Check Stats',
+          url: '/tabs/driverstats',
+          icon: 'stats-chart-outline',
         },
       ],
     },
