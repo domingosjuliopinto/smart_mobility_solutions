@@ -8,6 +8,7 @@ import { DeliveryService } from './delivery.service';
 @Component({
   selector: 'page-delivery',
   templateUrl: 'delivery.html',
+  styleUrls: ['delivery-detail.scss'],
 })
 export class DeliveryPage {
   deliveries: Delivery[];

@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+  <ion-toolbar class="ion-padding">
+    <ion-buttons slot="start" routerLink="/tabs/home">
+      <ion-icon name="arrow-back-outline" class="back"></ion-icon>
     </ion-buttons>
-    <ion-title>Deliveries</ion-title>
+    <ion-title class="title">Parcels</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,34 +13,57 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let delivery of deliveries; trackBy: trackId" #slidingItem>
-      <ion-item (click)="view(delivery)">
-        <ion-label text-wrap>
-          <p>{{delivery.id}}</p>
-          <p>{{delivery.parcel_id}}</p>
-          <p>{{delivery.driver_id}}</p>
-          <p>{{delivery.request_time | date:'medium'}}</p>
-          <p>{{delivery.assigned_time | date:'medium'}}</p>
-          <p>{{delivery.estimated_time | date:'medium'}}</p>
-          <p>{{delivery.ended_time | date:'medium'}}</p>
-          <p>{{delivery.star_received}}</p>
-          <p>{{delivery.delivery_status}}</p>
-        </ion-label>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="edit(slidingItem, delivery)"> {{ 'EDIT_BUTTON' | translate }} </ion-item-option>
-        <ion-item-option color="danger" (click)="delete(delivery)"> {{ 'DELETE_BUTTON' | translate }} </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-  <ion-item *ngIf="!deliveries?.length">
-    <ion-label> No Deliveries found. </ion-label>
-  </ion-item>
+  <div class="screen__background_back">
+    <span class="screen__background__shape screen__background__shape4_back"></span>
+    <span class="screen__background__shape screen__background__shape3"></span>
+    <span class="screen__background__shape screen__background__shape2"></span>
+    <span class="screen__background__shape screen__background__shape1"></span>
+  </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="new()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <div>
+    <br />
+    <ion-card *ngFor="let delivery of deliveries; trackBy: trackId">
+      <!-- Check parcel-detail.html for comments -->
+      <ion-grid (click)="view(delivery)">
+        <ion-row>
+          <ion-col><div>ID :{{delivery.id}}</div></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Parcel ID</ion-col>
+          <ion-col>{{delivery.parcel_id}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver ID</ion-col>
+          <ion-col>{{delivery.driver_id}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Request Time</ion-col>
+          <ion-col>{{delivery.request_time | date:'medium'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Assigned Time</ion-col>
+          <ion-col>{{delivery.assigned_time | date:'medium'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Estimated Time</ion-col>
+          <ion-col>{{delivery.estimated_time | date:'medium'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Ended Time</ion-col>
+          <ion-col>{{delivery.ended_time | date:'medium'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Star Received</ion-col>
+          <ion-col>{{delivery.star_received}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Delivery Status</ion-col>
+          <ion-col>{{delivery.delivery_status}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <div class="ion-text-center" *ngIf="!deliveries?.length">
+      <ion-label> No Deliveries found. </ion-label>
+    </div>
+  </div>
 </ion-content>
