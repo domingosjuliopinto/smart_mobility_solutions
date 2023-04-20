@@ -35,6 +35,15 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'routing',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../routing/routing.module').then(m => m.RoutingPageModule),
+          },
+        ],
+      },
+      {
         path: 'delivery',
         children: [
           {
