@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'page-parcel-detail',
   templateUrl: 'parcel-detail.html',
+  styleUrls: ['parcel-detail.scss'],
 })
 export class ParcelDetailPage implements OnInit {
   parcel: Parcel = {};

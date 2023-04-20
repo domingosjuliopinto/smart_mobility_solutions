@@ -26,6 +26,33 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'parcel',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../entities/parcel/parcel.module').then(m => m.ParcelPageModule),
+          },
+        ],
+      },
+      {
+        path: 'fleet',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../entities/fleet/fleet.module').then(m => m.FleetPageModule),
+          },
+        ],
+      },
+      {
+        path: 'delivery',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../entities/delivery/delivery.module').then(m => m.DeliveryPageModule),
+          },
+        ],
+      },
+      {
         path: 'driverstats',
         children: [
           {

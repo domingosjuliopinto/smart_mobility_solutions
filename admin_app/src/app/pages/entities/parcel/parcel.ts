@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, Platform, IonItemSliding } from '@ionic/angular';
+import { NavController, ToastController, Platform } from '@ionic/angular';
 import { filter, map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { Parcel } from './parcel.model';
@@ -8,6 +8,7 @@ import { ParcelService } from './parcel.service';
 @Component({
   selector: 'page-parcel',
   templateUrl: 'parcel.html',
+  styleUrls: ['parcel-detail.scss'],
 })
 export class ParcelPage {
   parcels: Parcel[];
@@ -56,12 +57,11 @@ export class ParcelPage {
   }
 
   async new() {
-    await this.navController.navigateForward('/tabs/entities/parcel/new');
+    await this.navController.navigateForward('/tabs/parcel/new');
   }
 
-  async edit(item: IonItemSliding, parcel: Parcel) {
-    await this.navController.navigateForward('/tabs/entities/parcel/' + parcel.id + '/edit');
-    await item.close();
+  async edit(parcel: Parcel) {
+    await this.navController.navigateForward('/tabs/parcel/' + parcel.id + '/edit');
   }
 
   async delete(parcel) {
@@ -76,6 +76,6 @@ export class ParcelPage {
   }
 
   async view(parcel: Parcel) {
-    await this.navController.navigateForward('/tabs/entities/parcel/' + parcel.id + '/view');
+    await this.navController.navigateForward('/tabs/parcel/' + parcel.id + '/view');
   }
 }

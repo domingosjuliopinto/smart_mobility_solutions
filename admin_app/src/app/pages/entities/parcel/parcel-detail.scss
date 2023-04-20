@@ -1,3 +1,22 @@
+ion-fab-button {
+  --background: #2696dc;
+  --background-activated: #4fd0e1;
+  --background-hover: #4fd0e1;
+  --border-radius: 15px;
+  --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --color: black;
+}
+
+ion-icon.back {
+  --ionicon-stroke-width: 16px;
+  font-size: 24px;
+  margin-left: 2%;
+}
+
+ion-title.title {
+  margin-left: 5%;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 * {
@@ -276,4 +295,49 @@ ion-icon.back {
 
 ion-title.title {
   margin-left: 5%;
+}
+
+ion-card {
+  margin: auto;
+  font-size: medium;
+  --background: rgba(0, 0, 0, 0.43);
+  --color: #9efff0;
+  --border-radius: 20px;
+  margin-bottom: 5px;
+}
+
+ion-card-title {
+  --color: #52ffe4;
+}
+
+ion-card-subtitle {
+  --color: #d1fff8;
+}
+
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+ion-col {
+  border: solid 1px #fff;
+  color: #fff;
+  text-align: center;
+  margin: 2%;
+  padding: 2%;
+  font-size: large;
+}
+
+ion-content.custom__text {
+  font-size: large;
+  text-align: center;
+}
+
+ion-button {
+  margin-left: 20px;
+}
+
+.logup {
+  margin: 3%;
 }

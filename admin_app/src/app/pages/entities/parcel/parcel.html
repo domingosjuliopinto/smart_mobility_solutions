@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+  <ion-toolbar class="ion-padding">
+    <ion-buttons slot="start" routerLink="/tabs/home">
+      <ion-icon name="arrow-back-outline" class="back"></ion-icon>
     </ion-buttons>
-    <ion-title>Parcels</ion-title>
+    <ion-title class="title">Parcels</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,38 +13,61 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let parcel of parcels; trackBy: trackId" #slidingItem>
-      <ion-item (click)="view(parcel)">
-        <ion-label text-wrap>
-          <p>{{parcel.id}}</p>
-          <p>{{parcel.sender_name}}</p>
-          <p>{{parcel.sender_email}}</p>
-          <p>{{parcel.sender_address}}</p>
-          <p>{{parcel.sender_phone_no}}</p>
-          <p>{{parcel.receiver_name}}</p>
-          <p>{{parcel.receiver_email}}</p>
-          <p>{{parcel.receiver_address}}</p>
-          <p>{{parcel.receiver_phone_no}}</p>
-          <p>{{parcel.parcel_name}}</p>
-          <p>{{parcel.parcel_type}}</p>
-          <p>{{parcel.parcel_weight_in_kg}}</p>
-          <p>{{parcel.status}}</p>
-        </ion-label>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="edit(slidingItem, parcel)"> {{ 'EDIT_BUTTON' | translate }} </ion-item-option>
-        <ion-item-option color="danger" (click)="delete(parcel)"> {{ 'DELETE_BUTTON' | translate }} </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-  <ion-item *ngIf="!parcels?.length">
-    <ion-label> No Parcels found. </ion-label>
-  </ion-item>
+  <div class="screen__background_back">
+    <span class="screen__background__shape screen__background__shape4_back"></span>
+    <span class="screen__background__shape screen__background__shape3"></span>
+    <span class="screen__background__shape screen__background__shape2"></span>
+    <span class="screen__background__shape screen__background__shape1"></span>
+  </div>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="new()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <div>
+    <br />
+    <ion-card *ngFor="let parcel of parcels; trackBy: trackId">
+      <!-- Check parcel-detail.html for comments -->
+      <ion-grid (click)="view(parcel)">
+        <ion-row>
+          <ion-col><div id="sentparcelid">ID : {{parcel.id}}</div></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Parcel Name</ion-col>
+          <ion-col>{{parcel.parcel_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Parcel Type</ion-col>
+          <ion-col>{{parcel.parcel_type}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Sender Name</ion-col>
+          <ion-col>{{parcel.sender_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Sender Address</ion-col>
+          <ion-col>{{parcel.sender_address}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Sender Phone No</ion-col>
+          <ion-col>{{parcel.sender_phone_no}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Receiver Name</ion-col>
+          <ion-col>{{parcel.receiver_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Receiver Address</ion-col>
+          <ion-col>{{parcel.receiver_address}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Receiver Phone No</ion-col>
+          <ion-col>{{parcel.receiver_phone_no}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Status</ion-col>
+          <ion-col>{{parcel.status}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <div class="ion-text-center" *ngIf="!parcels?.length">
+      <ion-label> No Parcels found. </ion-label>
+    </div>
+  </div>
 </ion-content>

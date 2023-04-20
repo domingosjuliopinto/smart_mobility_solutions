@@ -10,6 +10,7 @@ import { ParcelService } from './parcel.service';
 @Component({
   selector: 'page-parcel-update',
   templateUrl: 'parcel-update.html',
+  styleUrls: ['parcel-update.scss'],
 })
 export class ParcelUpdatePage implements OnInit {
   parcel: Parcel;
