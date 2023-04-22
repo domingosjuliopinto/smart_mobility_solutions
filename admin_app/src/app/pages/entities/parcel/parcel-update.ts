@@ -99,7 +99,7 @@ export class ParcelUpdatePage implements OnInit {
     this.isSaving = false;
     const toast = await this.toastCtrl.create({ message: `Parcel ${action} successfully.`, duration: 2000, position: 'middle' });
     await toast.present();
-    await this.navController.navigateBack('/tabs/entities/parcel');
+    await this.navController.navigateBack('/tabs/parcel');
   }
 
   previousState() {

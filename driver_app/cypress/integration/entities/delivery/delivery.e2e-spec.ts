@@ -96,9 +96,6 @@ describe('Delivery entity', () => {
       if (delivery.star_received !== undefined && delivery.star_received !== null) {
         deliveryDetailPage.getStar_receivedContent().contains(delivery.star_received);
       }
-      if (delivery.delivery_status !== undefined && delivery.delivery_status !== null) {
-        deliveryDetailPage.getDelivery_statusContent().contains(delivery.delivery_status);
-      }
       deliveryDetailPage.edit();
 
       deliveryUpdatePage.back();
@@ -179,9 +176,6 @@ describe('Delivery entity', () => {
       }
       if (deliverySample.star_received !== undefined && deliverySample.star_received !== null) {
         deliveryUpdatePage.setStar_receivedInput(deliverySample.star_received);
-      }
-      if (deliverySample.delivery_status !== undefined && deliverySample.delivery_status !== null) {
-        deliveryUpdatePage.setDelivery_statusInput(deliverySample.delivery_status);
       }
       deliveryUpdatePage.save();
 

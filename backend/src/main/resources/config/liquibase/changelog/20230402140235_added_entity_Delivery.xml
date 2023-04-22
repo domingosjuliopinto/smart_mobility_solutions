@@ -35,9 +35,6 @@
             <column name="star_received" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="delivery_status" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="delivery" columnName="request_time" columnDataType="${datetimeType}"/>
@@ -70,7 +67,6 @@
             <column name="estimated_time" type="date"/>
             <column name="ended_time" type="date"/>
             <column name="star_received" type="numeric"/>
-            <column name="delivery_status" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

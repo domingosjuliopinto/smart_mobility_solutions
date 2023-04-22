@@ -52,9 +52,6 @@ class DeliveryResourceIT {
     private static final Integer DEFAULT_STAR_RECEIVED = 0;
     private static final Integer UPDATED_STAR_RECEIVED = 1;
 
-    private static final String DEFAULT_DELIVERY_STATUS = "AAAAAAAAAA";
-    private static final String UPDATED_DELIVERY_STATUS = "BBBBBBBBBB";
-
     private static final String ENTITY_API_URL = "/api/deliveries";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -86,8 +83,7 @@ class DeliveryResourceIT {
             .assigned_time(DEFAULT_ASSIGNED_TIME)
             .estimated_time(DEFAULT_ESTIMATED_TIME)
             .ended_time(DEFAULT_ENDED_TIME)
-            .star_received(DEFAULT_STAR_RECEIVED)
-            .delivery_status(DEFAULT_DELIVERY_STATUS);
+            .star_received(DEFAULT_STAR_RECEIVED);
         return delivery;
     }
 
@@ -105,8 +101,7 @@ class DeliveryResourceIT {
             .assigned_time(UPDATED_ASSIGNED_TIME)
             .estimated_time(UPDATED_ESTIMATED_TIME)
             .ended_time(UPDATED_ENDED_TIME)
-            .star_received(UPDATED_STAR_RECEIVED)
-            .delivery_status(UPDATED_DELIVERY_STATUS);
+            .star_received(UPDATED_STAR_RECEIVED);
         return delivery;
     }
 
@@ -135,7 +130,6 @@ class DeliveryResourceIT {
         assertThat(testDelivery.getEstimated_time()).isEqualTo(DEFAULT_ESTIMATED_TIME);
         assertThat(testDelivery.getEnded_time()).isEqualTo(DEFAULT_ENDED_TIME);
         assertThat(testDelivery.getStar_received()).isEqualTo(DEFAULT_STAR_RECEIVED);
-        assertThat(testDelivery.getDelivery_status()).isEqualTo(DEFAULT_DELIVERY_STATUS);
     }
 
     @Test
@@ -192,23 +186,6 @@ class DeliveryResourceIT {
 
     @Test
     @Transactional
-    void checkDelivery_statusIsRequired() throws Exception {
-        int databaseSizeBeforeTest = deliveryRepository.findAll().size();
-        // set the field null
-        delivery.setDelivery_status(null);
-
-        // Create the Delivery, which fails.
-
-        restDeliveryMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(delivery)))
-            .andExpect(status().isBadRequest());
-
-        List<Delivery> deliveryList = deliveryRepository.findAll();
-        assertThat(deliveryList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     void getAllDeliveries() throws Exception {
         // Initialize the database
         deliveryRepository.saveAndFlush(delivery);
@@ -225,8 +202,7 @@ class DeliveryResourceIT {
             .andExpect(jsonPath("$.[*].assigned_time").value(hasItem(DEFAULT_ASSIGNED_TIME.toString())))
             .andExpect(jsonPath("$.[*].estimated_time").value(hasItem(DEFAULT_ESTIMATED_TIME.toString())))
             .andExpect(jsonPath("$.[*].ended_time").value(hasItem(DEFAULT_ENDED_TIME.toString())))
-            .andExpect(jsonPath("$.[*].star_received").value(hasItem(DEFAULT_STAR_RECEIVED)))
-            .andExpect(jsonPath("$.[*].delivery_status").value(hasItem(DEFAULT_DELIVERY_STATUS)));
+            .andExpect(jsonPath("$.[*].star_received").value(hasItem(DEFAULT_STAR_RECEIVED)));
     }
 
     @Test
@@ -247,8 +223,7 @@ class DeliveryResourceIT {
             .andExpect(jsonPath("$.assigned_time").value(DEFAULT_ASSIGNED_TIME.toString()))
             .andExpect(jsonPath("$.estimated_time").value(DEFAULT_ESTIMATED_TIME.toString()))
             .andExpect(jsonPath("$.ended_time").value(DEFAULT_ENDED_TIME.toString()))
-            .andExpect(jsonPath("$.star_received").value(DEFAULT_STAR_RECEIVED))
-            .andExpect(jsonPath("$.delivery_status").value(DEFAULT_DELIVERY_STATUS));
+            .andExpect(jsonPath("$.star_received").value(DEFAULT_STAR_RECEIVED));
     }
 
     @Test
@@ -277,8 +252,7 @@ class DeliveryResourceIT {
             .assigned_time(UPDATED_ASSIGNED_TIME)
             .estimated_time(UPDATED_ESTIMATED_TIME)
             .ended_time(UPDATED_ENDED_TIME)
-            .star_received(UPDATED_STAR_RECEIVED)
-            .delivery_status(UPDATED_DELIVERY_STATUS);
+            .star_received(UPDATED_STAR_RECEIVED);
 
         restDeliveryMockMvc
             .perform(
@@ -299,7 +273,6 @@ class DeliveryResourceIT {
         assertThat(testDelivery.getEstimated_time()).isEqualTo(UPDATED_ESTIMATED_TIME);
         assertThat(testDelivery.getEnded_time()).isEqualTo(UPDATED_ENDED_TIME);
         assertThat(testDelivery.getStar_received()).isEqualTo(UPDATED_STAR_RECEIVED);
-        assertThat(testDelivery.getDelivery_status()).isEqualTo(UPDATED_DELIVERY_STATUS);
     }
 
     @Test
@@ -396,7 +369,6 @@ class DeliveryResourceIT {
         assertThat(testDelivery.getEstimated_time()).isEqualTo(UPDATED_ESTIMATED_TIME);
         assertThat(testDelivery.getEnded_time()).isEqualTo(UPDATED_ENDED_TIME);
         assertThat(testDelivery.getStar_received()).isEqualTo(UPDATED_STAR_RECEIVED);
-        assertThat(testDelivery.getDelivery_status()).isEqualTo(DEFAULT_DELIVERY_STATUS);
     }
 
     @Test
@@ -418,8 +390,7 @@ class DeliveryResourceIT {
             .assigned_time(UPDATED_ASSIGNED_TIME)
             .estimated_time(UPDATED_ESTIMATED_TIME)
             .ended_time(UPDATED_ENDED_TIME)
-            .star_received(UPDATED_STAR_RECEIVED)
-            .delivery_status(UPDATED_DELIVERY_STATUS);
+            .star_received(UPDATED_STAR_RECEIVED);
 
         restDeliveryMockMvc
             .perform(
@@ -440,7 +411,6 @@ class DeliveryResourceIT {
         assertThat(testDelivery.getEstimated_time()).isEqualTo(UPDATED_ESTIMATED_TIME);
         assertThat(testDelivery.getEnded_time()).isEqualTo(UPDATED_ENDED_TIME);
         assertThat(testDelivery.getStar_received()).isEqualTo(UPDATED_STAR_RECEIVED);
-        assertThat(testDelivery.getDelivery_status()).isEqualTo(UPDATED_DELIVERY_STATUS);
     }
 
     @Test

@@ -41,7 +41,6 @@ type DeliveryFormGroupContent = {
   estimated_time: FormControl<DeliveryFormRawValue['estimated_time']>;
   ended_time: FormControl<DeliveryFormRawValue['ended_time']>;
   star_received: FormControl<DeliveryFormRawValue['star_received']>;
-  delivery_status: FormControl<DeliveryFormRawValue['delivery_status']>;
 };
 
 export type DeliveryFormGroup = FormGroup<DeliveryFormGroupContent>;
@@ -73,9 +72,6 @@ export class DeliveryFormService {
       ended_time: new FormControl(deliveryRawValue.ended_time),
       star_received: new FormControl(deliveryRawValue.star_received, {
         validators: [Validators.min(0), Validators.max(5)],
-      }),
-      delivery_status: new FormControl(deliveryRawValue.delivery_status, {
-        validators: [Validators.required],
       }),
     });
   }

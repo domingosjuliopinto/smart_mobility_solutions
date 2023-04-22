@@ -56,11 +56,11 @@ export class FleetPage {
   }
 
   async new() {
-    await this.navController.navigateForward('/tabs/entities/fleet/new');
+    await this.navController.navigateForward('/tabs/fleet/new');
   }
 
   async edit(item: IonItemSliding, fleet: Fleet) {
-    await this.navController.navigateForward('/tabs/entities/fleet/' + fleet.id + '/edit');
+    await this.navController.navigateForward('/tabs/fleet/' + fleet.id + '/edit');
     await item.close();
   }
 
@@ -76,6 +76,6 @@ export class FleetPage {
   }
 
   async view(fleet: Fleet) {
-    await this.navController.navigateForward('/tabs/entities/fleet/' + fleet.id + '/view');
+    await this.navController.navigateForward('/tabs/fleet/' + fleet.id + '/view');
   }
 }

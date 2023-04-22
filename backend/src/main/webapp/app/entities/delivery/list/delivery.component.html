@@ -80,12 +80,6 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
-          <th scope="col" jhiSortBy="delivery_status">
-            <div class="d-flex">
-              <span jhiTranslate="smsbackendApp.delivery.delivery_status">Delivery Status</span>
-              <fa-icon class="p-1" icon="sort"></fa-icon>
-            </div>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -101,7 +95,6 @@
           <td>{{ delivery.estimated_time | formatMediumDatetime }}</td>
           <td>{{ delivery.ended_time | formatMediumDatetime }}</td>
           <td>{{ delivery.star_received }}</td>
-          <td>{{ delivery.delivery_status }}</td>
           <td class="text-end">
             <div class="btn-group">
               <button

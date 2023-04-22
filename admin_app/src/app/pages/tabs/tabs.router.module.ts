@@ -17,15 +17,6 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'entities',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('../entities/entities.module').then(m => m.EntitiesPageModule),
-          },
-        ],
-      },
-      {
         path: 'parcel',
         children: [
           {
