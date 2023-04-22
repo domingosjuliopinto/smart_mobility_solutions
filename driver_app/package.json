@@ -48,6 +48,7 @@
     "@ngx-translate/http-loader": "7.0.0",
     "echarts": "^5.4.2",
     "leaflet": "^1.9.3",
+    "leaflet-routing-machine": "^3.2.12",
     "ngx-echarts": "^8.0.1",
     "ngx-webstorage": "9.0.0",
     "rxjs": "~6.6.7",
