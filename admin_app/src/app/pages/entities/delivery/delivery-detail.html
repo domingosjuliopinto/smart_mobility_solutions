@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-padding">
-    <ion-buttons slot="start" routerLink="/tabs/parcel">
+    <ion-buttons slot="start" routerLink="/tabs/delivery">
       <ion-icon name="arrow-back-outline" class="back"></ion-icon>
     </ion-buttons>
     <ion-title class="title">Delivery</ion-title>
@@ -58,10 +58,6 @@
       <ion-row>
         <ion-col>Star Received</ion-col>
         <ion-col>{{delivery.star_received}}</ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>Delivery Status</ion-col>
-        <ion-col>{{delivery.delivery_status}}</ion-col>
       </ion-row>
     </ion-grid>
   </ion-card>

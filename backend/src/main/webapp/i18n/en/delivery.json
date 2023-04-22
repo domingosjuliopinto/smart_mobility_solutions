@@ -24,8 +24,7 @@
       "assigned_time": "Assigned Time",
       "estimated_time": "Estimated Time",
       "ended_time": "Ended Time",
-      "star_received": "Star Received",
-      "delivery_status": "Delivery Status"
+      "star_received": "Star Received"
     }
   }
 }

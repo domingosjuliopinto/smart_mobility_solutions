@@ -26,7 +26,7 @@ export class ParcelDetailPage implements OnInit {
   }
 
   open(item: Parcel) {
-    this.navController.navigateForward('/tabs/entities/parcel/' + item.id + '/edit');
+    this.navController.navigateForward('/tabs/parcel/' + item.id + '/edit');
   }
 
   async deleteModal(item: Parcel) {
@@ -42,7 +42,7 @@ export class ParcelDetailPage implements OnInit {
           text: 'Delete',
           handler: () => {
             this.parcelService.delete(item.id).subscribe(() => {
-              this.navController.navigateForward('/tabs/entities/parcel');
+              this.navController.navigateForward('/tabs/parcel');
             });
           },
         },

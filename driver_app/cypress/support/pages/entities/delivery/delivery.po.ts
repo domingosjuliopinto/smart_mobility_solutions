@@ -35,9 +35,6 @@ export class DeliveryUpdatePage extends EntityUpdatePage {
     this.setInputValue('star_received', star_received);
   }
 
-  setDelivery_statusInput(delivery_status: string) {
-    this.setInputValue('delivery_status', delivery_status);
-  }
 }
 
 export class DeliveryDetailPage extends EntityDetailPage {
@@ -69,9 +66,5 @@ export class DeliveryDetailPage extends EntityDetailPage {
 
   getStar_receivedContent() {
     return cy.get('#star_received-content');
-  }
-
-  getDelivery_statusContent() {
-    return cy.get('#delivery_status-content');
   }
 }

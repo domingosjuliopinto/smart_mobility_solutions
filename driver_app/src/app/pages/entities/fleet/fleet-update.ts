@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Fleet } from './fleet.model';
 import { FleetService } from './fleet.service';
+import { Account } from 'src/model/account.model';
+import { AccountService } from '../../../services/auth/account.service';
 
 @Component({
   selector: 'page-fleet-update',
@@ -21,7 +23,6 @@ export class FleetUpdatePage implements OnInit {
   form = this.formBuilder.group({
     id: [null, []],
     driver_name: [null, [Validators.required]],
-    driver_email: [null, [Validators.required]],
     driver_address: [null, [Validators.required]],
     driver_phone_no: [null, [Validators.required]],
     vehicle_plate_no: [null, []],
@@ -32,6 +33,7 @@ export class FleetUpdatePage implements OnInit {
     protected activatedRoute: ActivatedRoute,
     protected navController: NavController,
     protected formBuilder: FormBuilder,
+    private accountService: AccountService,
     public platform: Platform,
     protected toastCtrl: ToastController,
     private fleetService: FleetService
@@ -42,7 +44,18 @@ export class FleetUpdatePage implements OnInit {
     });
   }
 
+  account: Account;
+  disabled_driver_email = '';
+
   ngOnInit() {
+    this.accountService.identity().then(account => {
+      if (account === null) {
+        this.goBackToHomePage();
+      } else {
+        this.account = account;
+        this.disabled_driver_email = this.account.email;
+      }
+    });
     this.activatedRoute.data.subscribe(response => {
       this.fleet = response.data;
       this.isNew = this.fleet.id === null || this.fleet.id === undefined;
@@ -50,11 +63,15 @@ export class FleetUpdatePage implements OnInit {
     });
   }
 
+  private goBackToHomePage(): void {
+    this.navController.navigateBack('');
+  }
+
+
   updateForm(fleet: Fleet) {
     this.form.patchValue({
       id: fleet.id,
       driver_name: fleet.driver_name,
-      driver_email: fleet.driver_email,
       driver_address: fleet.driver_address,
       driver_phone_no: fleet.driver_phone_no,
       vehicle_plate_no: fleet.vehicle_plate_no,
@@ -106,7 +123,7 @@ export class FleetUpdatePage implements OnInit {
       ...new Fleet(),
       id: this.form.get(['id']).value,
       driver_name: this.form.get(['driver_name']).value,
-      driver_email: this.form.get(['driver_email']).value,
+      driver_email: this.account.email,
       driver_address: this.form.get(['driver_address']).value,
       driver_phone_no: this.form.get(['driver_phone_no']).value,
       vehicle_plate_no: this.form.get(['vehicle_plate_no']).value,

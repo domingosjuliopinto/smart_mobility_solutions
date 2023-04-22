@@ -25,7 +25,7 @@ export class FleetDetailPage implements OnInit {
   }
 
   open(item: Fleet) {
-    this.navController.navigateForward('/tabs/entities/fleet/' + item.id + '/edit');
+    this.navController.navigateForward('/tabs/fleet/' + item.id + '/edit');
   }
 
   async deleteModal(item: Fleet) {
@@ -41,7 +41,7 @@ export class FleetDetailPage implements OnInit {
           text: 'Delete',
           handler: () => {
             this.fleetService.delete(item.id).subscribe(() => {
-              this.navController.navigateForward('/tabs/entities/fleet');
+              this.navController.navigateForward('/tabs/fleet');
             });
           },
         },

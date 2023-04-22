@@ -78,7 +78,6 @@ class DeliveryGatlingTest extends Simulation {
                 , "estimated_time":"2020-01-01T00:00:00.000Z"
                 , "ended_time":"2020-01-01T00:00:00.000Z"
                 , "star_received":"0"
-                , "delivery_status":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_delivery_url"))).exitHereIfFailed

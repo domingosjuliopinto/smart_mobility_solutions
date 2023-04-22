@@ -88,7 +88,7 @@ export class FleetUpdatePage implements OnInit {
     this.isSaving = false;
     const toast = await this.toastCtrl.create({ message: `Fleet ${action} successfully.`, duration: 2000, position: 'middle' });
     await toast.present();
-    await this.navController.navigateBack('/tabs/entities/fleet');
+    await this.navController.navigateBack('/tabs/fleet');
   }
 
   previousState() {

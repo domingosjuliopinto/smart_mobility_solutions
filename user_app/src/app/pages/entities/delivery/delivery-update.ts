@@ -30,7 +30,6 @@ export class DeliveryUpdatePage implements OnInit {
     estimated_time: [null, []],
     ended_time: [null, []],
     star_received: [null, []],
-    delivery_status: [null, [Validators.required]],
   });
 
   constructor(
@@ -65,7 +64,6 @@ export class DeliveryUpdatePage implements OnInit {
       estimated_time: this.isNew ? new Date().toISOString() : delivery.estimated_time,
       ended_time: this.isNew ? new Date().toISOString() : delivery.ended_time,
       star_received: delivery.star_received,
-      delivery_status: delivery.delivery_status,
     });
   }
 
@@ -94,7 +92,7 @@ export class DeliveryUpdatePage implements OnInit {
     this.isSaving = false;
     const toast = await this.toastCtrl.create({ message: `Delivery ${action} successfully.`, duration: 2000, position: 'middle' });
     await toast.present();
-    await this.navController.navigateBack('/tabs/entities/delivery');
+    await this.navController.navigateBack('/tabs/delivery');
   }
 
   previousState() {
@@ -119,7 +117,6 @@ export class DeliveryUpdatePage implements OnInit {
       estimated_time: new Date(this.form.get(['estimated_time']).value),
       ended_time: new Date(this.form.get(['ended_time']).value),
       star_received: this.form.get(['star_received']).value,
-      delivery_status: this.form.get(['delivery_status']).value,
     };
   }
 }

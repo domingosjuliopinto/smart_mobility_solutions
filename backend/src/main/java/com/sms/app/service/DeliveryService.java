@@ -79,9 +79,6 @@ public class DeliveryService {
                 if (delivery.getStar_received() != null) {
                     existingDelivery.setStar_received(delivery.getStar_received());
                 }
-                if (delivery.getDelivery_status() != null) {
-                    existingDelivery.setDelivery_status(delivery.getDelivery_status());
-                }
 
                 return existingDelivery;
             })

@@ -46,10 +46,6 @@ public class Delivery implements Serializable {
     @Column(name = "star_received")
     private Integer star_received;
 
-    @NotNull
-    @Column(name = "delivery_status", nullable = false)
-    private String delivery_status;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -156,19 +152,6 @@ public class Delivery implements Serializable {
         this.star_received = star_received;
     }
 
-    public String getDelivery_status() {
-        return this.delivery_status;
-    }
-
-    public Delivery delivery_status(String delivery_status) {
-        this.setDelivery_status(delivery_status);
-        return this;
-    }
-
-    public void setDelivery_status(String delivery_status) {
-        this.delivery_status = delivery_status;
-    }
-
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -200,7 +183,6 @@ public class Delivery implements Serializable {
             ", estimated_time='" + getEstimated_time() + "'" +
             ", ended_time='" + getEnded_time() + "'" +
             ", star_received=" + getStar_received() +
-            ", delivery_status='" + getDelivery_status() + "'" +
             "}";
     }
 }

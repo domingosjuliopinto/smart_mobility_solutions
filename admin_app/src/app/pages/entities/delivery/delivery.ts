@@ -57,11 +57,11 @@ export class DeliveryPage {
   }
 
   async new() {
-    await this.navController.navigateForward('/tabs/entities/delivery/new');
+    await this.navController.navigateForward('/tabs/delivery/new');
   }
 
   async edit(item: IonItemSliding, delivery: Delivery) {
-    await this.navController.navigateForward('/tabs/entities/delivery/' + delivery.id + '/edit');
+    await this.navController.navigateForward('/tabs/delivery/' + delivery.id + '/edit');
     await item.close();
   }
 
@@ -77,6 +77,6 @@ export class DeliveryPage {
   }
 
   async view(delivery: Delivery) {
-    await this.navController.navigateForward('/tabs/entities/delivery/' + delivery.id + '/view');
+    await this.navController.navigateForward('/tabs/delivery/' + delivery.id + '/view');
   }
 }

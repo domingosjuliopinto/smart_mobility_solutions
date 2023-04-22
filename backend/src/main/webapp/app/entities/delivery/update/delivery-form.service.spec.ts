@@ -27,7 +27,6 @@ describe('Delivery Form Service', () => {
             estimated_time: expect.any(Object),
             ended_time: expect.any(Object),
             star_received: expect.any(Object),
-            delivery_status: expect.any(Object),
           })
         );
       });
@@ -45,7 +44,6 @@ describe('Delivery Form Service', () => {
             estimated_time: expect.any(Object),
             ended_time: expect.any(Object),
             star_received: expect.any(Object),
-            delivery_status: expect.any(Object),
           })
         );
       });

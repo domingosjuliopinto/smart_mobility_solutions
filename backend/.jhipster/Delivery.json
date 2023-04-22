@@ -34,11 +34,6 @@
       "fieldValidateRules": ["min", "max"],
       "fieldValidateRulesMax": "5",
       "fieldValidateRulesMin": "0"
-    },
-    {
-      "fieldName": "delivery_status",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
     }
   ],
   "jpaMetamodelFiltering": false,
