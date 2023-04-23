@@ -1,4 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { ToastController } from '@ionic/angular';
+import { filter, map } from 'rxjs/operators';
+import { HttpResponse } from '@angular/common/http';
 
 import { EChartsOption } from 'echarts';
 import * as echarts from 'echarts/core';
@@ -6,6 +9,8 @@ import { PieChart, BarChart, LineChart } from 'echarts/charts';
 import { TitleComponent, TooltipComponent, LegendComponent,GridComponent} from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 
+import { Fleet } from '../entities/fleet/fleet.model';
+import { FleetService } from '../entities/fleet/fleet.service';
 
 @Component({
   selector: 'app-driverstats',
@@ -14,9 +19,69 @@ import { CanvasRenderer } from 'echarts/renderers';
 })
 export class DriverStatsPage implements OnInit{
 
-  constructor(private el: ElementRef, private renderer: Renderer2) { }
+  fleets: Fleet[];
+  i = 0;
 
-  ngOnInit() {
+  //for Fleet Diagram Pie Diagram
+  Occupied = 0
+  Free = 0
+  Accident = 0
+  Repairs = 0
+
+  constructor(
+    private el: ElementRef, 
+    private renderer: Renderer2,
+    private fleetService: FleetService,
+    private toastCtrl: ToastController,
+    ) {
+      this.fleets = [];
+    }
+
+    ngOnInit(){
+      this.loadAll();
+    }
+
+    
+  
+    async loadAll(refresher?) {
+      this.fleetService
+        .query()
+        .pipe(
+          filter((res: HttpResponse<Fleet[]>) => res.ok),
+          map((res: HttpResponse<Fleet[]>) => res.body)
+        )
+        .subscribe(
+          (response: Fleet[]) => {
+            this.fleets = response;
+            for(this.i=0;this.i<this.fleets?.length;this.i++){
+              if(this.fleets[this.i].vehicle_status=='Free'){
+                this.Free+=1
+              }
+              if(this.fleets[this.i].vehicle_status=='Occupied'){
+                this.Occupied+=1
+              }
+              if(this.fleets[this.i].vehicle_status=='Accident'){
+                this.Accident+=1
+              }
+              if(this.fleets[this.i].vehicle_status=='Repairs'){
+                this.Repairs+=1
+              }
+            }
+            if (typeof refresher !== 'undefined') {
+              setTimeout(() => {
+                refresher.target.complete();
+              }, 750);
+            }
+          },
+          async error => {
+            console.error(error);
+            const toast = await this.toastCtrl.create({ message: 'Failed to load data', duration: 2000, position: 'middle' });
+            await toast.present();
+          }
+        );
+    }
+
+    async ionViewWillEnter() {
     const chartContainer = this.el.nativeElement.querySelector('#chart-container');
     const chartContainer1 = this.el.nativeElement.querySelector('#chart-container1');
     const chartContainer2 = this.el.nativeElement.querySelector('#chart-container2');
@@ -27,11 +92,11 @@ export class DriverStatsPage implements OnInit{
     const mediaQuery4 = window.matchMedia('(max-width:768px)');
     if (mediaQuery1.matches) {
       this.renderer.setStyle(chartContainer, 'width', '310px');
-      this.renderer.setStyle(chartContainer, 'height', '320px');
+      this.renderer.setStyle(chartContainer, 'height', '350px');
       this.renderer.setStyle(chartContainer1, 'width', '310px');
       this.renderer.setStyle(chartContainer1, 'height', '310px');
       this.renderer.setStyle(chartContainer2, 'width', '310px');
-      this.renderer.setStyle(chartContainer2, 'height', '310px');
+      this.renderer.setStyle(chartContainer2, 'height', '350px');
       this.renderer.setStyle(chartContainer3, 'width', '310px');
       this.renderer.setStyle(chartContainer3, 'height', '310px');
     }else if(mediaQuery2.matches){
@@ -90,10 +155,10 @@ export class DriverStatsPage implements OnInit{
           type: 'pie',
           radius: '50%',
           data: [
-            { value: 735, name: 'Fleet Occupied' },
-            { value: 1048, name: 'Fleet Free' },
-            { value: 580, name: 'Fleet Repairs' },
-            { value: 484, name: 'Fleet Accident' },
+            { value: this.Occupied, name: 'Fleet Occupied' },
+            { value: this.Free, name: 'Fleet Free' },
+            { value: this.Repairs, name: 'Fleet Repairs' },
+            { value: this.Accident, name: 'Fleet Accident' },
           ],
           emphasis: {
             itemStyle: {

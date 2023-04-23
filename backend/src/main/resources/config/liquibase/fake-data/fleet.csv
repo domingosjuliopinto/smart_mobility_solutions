@@ -8,4 +8,5 @@ id;driver_name;driver_email;driver_address;driver_phone_no;vehicle_plate_no;vehi
 88450;Sarthak;sarthak@gmail.com;Kandivali;9820823403;MH47CD1232;Tempo;Free
 23216;Kartik;kartik@gmail.com;Vasai;9326441587;MH02DF4653;Truck;Free
 39028;Vinod;vinod@gmail.com;VileParle;9920843891;MH47JH1865;Bike;Accident
-86798;Aditya;aditya@gmail.com;Andheri;8987698712;MH02CD1452;Tempo;Free
+86798;Aditya;aditya@gmail.com;Andheri;8987698712;MH02CD1452;Tempo;Repairs
+86799;Vivek;vivek@gmail.com;Nashik;8987698713;;None;No Vehicle Assigned

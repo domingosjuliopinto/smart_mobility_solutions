@@ -8,6 +8,7 @@ import { FleetService } from './fleet.service';
 @Component({
   selector: 'page-fleet',
   templateUrl: 'fleet.html',
+  styleUrls: ['fleet-detail.scss'],
 })
 export class FleetPage {
   fleets: Fleet[];
