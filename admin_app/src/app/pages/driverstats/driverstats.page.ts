@@ -22,11 +22,20 @@ export class DriverStatsPage implements OnInit{
   fleets: Fleet[];
   i = 0;
 
-  //for Fleet Diagram Pie Diagram
+  //for Fleet Pie Diagram
   Occupied = 0
   Free = 0
   Accident = 0
   Repairs = 0
+  //for No of Vehicle Bar
+  None = 0 
+  Cycle = 0
+  Scooter = 0
+  Bike = 0
+  Rickshaw = 0
+  Car = 0
+  Tempo = 0
+  Truck = 0
 
   constructor(
     private el: ElementRef, 
@@ -54,6 +63,7 @@ export class DriverStatsPage implements OnInit{
           (response: Fleet[]) => {
             this.fleets = response;
             for(this.i=0;this.i<this.fleets?.length;this.i++){
+              //For Fleet Pie Diagram
               if(this.fleets[this.i].vehicle_status=='Free'){
                 this.Free+=1
               }
@@ -65,6 +75,31 @@ export class DriverStatsPage implements OnInit{
               }
               if(this.fleets[this.i].vehicle_status=='Repairs'){
                 this.Repairs+=1
+              }
+              // For No of Vehicle Bar
+              if(this.fleets[this.i].vehicle_type=='None'){
+                this.None+=1
+              }
+              if(this.fleets[this.i].vehicle_type=='Cycle'){
+                this.Cycle+=1
+              }
+              if(this.fleets[this.i].vehicle_type=='Scooter'){
+                this.Scooter+=1
+              }
+              if(this.fleets[this.i].vehicle_type=='Bike'){
+                this.Bike+=1
+              }
+              if(this.fleets[this.i].vehicle_type=='Rickshaw'){
+                this.Rickshaw+=1
+              }
+              if(this.fleets[this.i].vehicle_type=='Car'){
+                this.Car+=1
+              }
+              if(this.fleets[this.i].vehicle_type=='Tempo'){
+                this.Tempo+=1
+              }
+              if(this.fleets[this.i].vehicle_type=='Truck'){
+                this.Truck+=1
               }
             }
             if (typeof refresher !== 'undefined') {
@@ -126,6 +161,15 @@ export class DriverStatsPage implements OnInit{
       this.renderer.setStyle(chartContainer2, 'height', '600px');
       this.renderer.setStyle(chartContainer3, 'width', '600px');
       this.renderer.setStyle(chartContainer3, 'height', '600px');
+    }else{
+      this.renderer.setStyle(chartContainer, 'width', '700px');
+      this.renderer.setStyle(chartContainer, 'height', '700px');
+      this.renderer.setStyle(chartContainer1, 'width', '700px');
+      this.renderer.setStyle(chartContainer1, 'height', '700px');
+      this.renderer.setStyle(chartContainer2, 'width', '700px');
+      this.renderer.setStyle(chartContainer2, 'height', '700px');
+      this.renderer.setStyle(chartContainer3, 'width', '700px');
+      this.renderer.setStyle(chartContainer3, 'height', '700px');
     }
     
     // register echarts components
@@ -173,19 +217,19 @@ export class DriverStatsPage implements OnInit{
 
     const options1: EChartsOption = {
       title: {
-        text: 'Packages Delivered Per Day',
+        text: 'No of Vehicle in Fleet',
         left: 'center',
       },
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        data: ['None','Cycle','Scooter','Bike','Rickshaw','Car','Tempo','Truck'],
       },
       yAxis: {
         type: 'value',
       },
       series: [
         {
-          data: [120, 200, 150, 80, 70, 110, 130],
+          data: [this.None,this.Cycle,this.Scooter,this.Bike,this.Rickshaw,this.Car,this.Tempo,this.Truck],
           type: 'bar',
         },
       ],
@@ -233,19 +277,19 @@ export class DriverStatsPage implements OnInit{
 
     const options3: EChartsOption = {
       title: {
-        text: 'Average tasks done monthly',
+        text: 'Packages Delivered Per Day',
         left: 'center'
       },
       xAxis: {
         type: 'category',
-        data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep', 'Oct', 'Nov', 'Dec']
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       },
       yAxis: {
         type: 'value'
       },
       series: [
         {
-          data: [25,40, 30, 50, 45, 40],
+          data: [120, 200, 150, 80, 70, 110, 130],
           type: 'line'
         }
       ]

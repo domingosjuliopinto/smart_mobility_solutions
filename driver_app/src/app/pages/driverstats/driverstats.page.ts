@@ -27,11 +27,11 @@ export class DriverStatsPage implements OnInit{
     const mediaQuery4 = window.matchMedia('(max-width:768px)');
     if (mediaQuery1.matches) {
       this.renderer.setStyle(chartContainer, 'width', '310px');
-      this.renderer.setStyle(chartContainer, 'height', '320px');
+      this.renderer.setStyle(chartContainer, 'height', '350px');
       this.renderer.setStyle(chartContainer1, 'width', '310px');
       this.renderer.setStyle(chartContainer1, 'height', '310px');
       this.renderer.setStyle(chartContainer2, 'width', '310px');
-      this.renderer.setStyle(chartContainer2, 'height', '310px');
+      this.renderer.setStyle(chartContainer2, 'height', '350px');
       this.renderer.setStyle(chartContainer3, 'width', '310px');
       this.renderer.setStyle(chartContainer3, 'height', '310px');
     }else if(mediaQuery2.matches){
@@ -61,6 +61,15 @@ export class DriverStatsPage implements OnInit{
       this.renderer.setStyle(chartContainer2, 'height', '600px');
       this.renderer.setStyle(chartContainer3, 'width', '600px');
       this.renderer.setStyle(chartContainer3, 'height', '600px');
+    }else{
+      this.renderer.setStyle(chartContainer, 'width', '700px');
+      this.renderer.setStyle(chartContainer, 'height', '700px');
+      this.renderer.setStyle(chartContainer1, 'width', '700px');
+      this.renderer.setStyle(chartContainer1, 'height', '700px');
+      this.renderer.setStyle(chartContainer2, 'width', '700px');
+      this.renderer.setStyle(chartContainer2, 'height', '700px');
+      this.renderer.setStyle(chartContainer3, 'width', '700px');
+      this.renderer.setStyle(chartContainer3, 'height', '700px');
     }
     
     // register echarts components

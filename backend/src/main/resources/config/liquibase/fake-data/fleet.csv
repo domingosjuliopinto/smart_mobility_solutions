@@ -1,9 +1,9 @@
 id;driver_name;driver_email;driver_address;driver_phone_no;vehicle_plate_no;vehicle_type;vehicle_status
-21814;Ramesh;ramesh@gmail.com;Ramwadi;9920823504;MH02CD1231;Tempo;Occupied
+21814;Ramesh;ramesh@gmail.com;Ramwadi;9920823504;MH02CD1231;Rickshaw;Occupied
 77944;Suresh;suresh@gmail.com;Sureshnagar;9167646421;MH04CE1432;Truck;Occupied
-48081;Domingos;domingos@gmail.com;Borivali;8612343568;MH47AB1987;Car;Free
+48081;Domingos;domingos@gmail.com;Borivali;8612343568;MH47AB1987;Cycle;Free
 21778;Joel;joel@gmail.com;Jogeshwari;9910342353;MH05FD4354;Car;Free
-95459;Somnath;somnath@gmail.com;Naigaon;9932413564;MH14GF1902;Bike;Repairs
+95459;Somnath;somnath@gmail.com;Naigaon;9932413564;MH14GF1902;Scooter;Repairs
 21314;Lester;lester@gmail.com;Andheri;9920823405;MH02CD1721;Tempo;Occupied
 88450;Sarthak;sarthak@gmail.com;Kandivali;9820823403;MH47CD1232;Tempo;Free
 23216;Kartik;kartik@gmail.com;Vasai;9326441587;MH02DF4653;Truck;Free
