@@ -6,7 +6,11 @@ const routes: Routes = [
   { path: 'tabs', loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule) },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) },
   { path: 'signup', loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupPageModule) },
-  { path: 'accessdenied', redirectTo: '', pathMatch: 'full' },
+  { path: 'accessdenied', redirectTo: '', pathMatch: 'full' },  {
+    path: 'track',
+    loadChildren: () => import('./pages/track/track.module').then( m => m.TrackPageModule)
+  },
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

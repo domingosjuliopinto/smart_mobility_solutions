@@ -1,0 +1,278 @@
+
+
+
+<ion-header>
+ 
+  <!-- <ion-toolbar>
+   <ion-buttons slot="start">
+      <ion-menu-button color="medium"></ion-menu-button>
+    </ion-buttons>
+    <ion-button shape="round" fill="dark"><ion-label  >List View</ion-label>
+     </ion-button>
+    <ion-button shape="round" fill="dark"><ion-label  style=" right :5px;">Map View</ion-label>
+      
+    </ion-button> 
+    <ion-segment mode="ios" value="default" [(ngModel)]="type2">
+      <ion-segment-button value="segment4">
+       <ion-icon  color="dark"></ion-icon> 
+        <ion-label >List View </ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="segment3">
+         <ion-icon  color="dark"></ion-icon> 
+        <ion-label>Map View </ion-label>
+      </ion-segment-button>
+     (ionChange)="segmentChanged($event)"
+    </ion-segment>
+  </ion-toolbar> -->
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button color="medium"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-menu-button color="medium"></ion-menu-button>
+    </ion-buttons>
+    <ion-segment  mode="ios" [(ngModel)]="type2" (ionChange)="segmentChanged($event)" >
+      <ion-segment-button value="segment4">
+        List View
+      </ion-segment-button>
+      <ion-segment-button value="segment5">
+        Map View
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+ 
+  
+  <!-- <div class="map" id="map" ></div> -->
+  <!-- <div [ngSwitch]="type2"> -->
+    <ion-list [hidden] = "type2 != 'segment4'" >
+      <ion-item-sliding *ngFor="let trip of trips; trackBy: trackId" #slidingItem>
+      <ion-card style="width:95%">
+      <ion-item >
+        <ion-label text-wrap (click)="view(trip)">
+          <p>{{trip.id}}&nbsp;{{trip.distanceCovered}}</p>
+          <!-- <p>{{trip.gUID}}</p> -->
+          <p></p>
+          <p>{{trip.startDate | date:'medium'}}</p>
+          <!-- <p>{{trip.endDate | date:'medium'}}</p>
+          <p>{{trip.estTime}}</p>
+          <p>{{trip.startTime}}</p>
+          <p>{{trip.endTime}}</p> -->
+          <p>{{trip.description}}</p>
+          <!-- <p>{{trip.createdBy}}</p>
+          <p>{{trip.createdOn | date:'medium'}}</p>
+          <p>{{trip.updatedBy}}</p>
+          <p>{{trip.updatedOn | date:'medium'}}</p> -->
+        </ion-label>
+        <ion-button (click)="view(trip)">
+          <ion-icon name="eye-outline"></ion-icon>
+        </ion-button>
+          <ion-button (click)="edit(slidingItem, trip)">
+            <ion-icon  name="pencil-outline"></ion-icon>
+          </ion-button>
+          <ion-button color='danger' (click)="delete(trip)">
+            <ion-icon   name="trash-outline"></ion-icon>
+          </ion-button>
+      
+      </ion-item>
+    </ion-card>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="edit(slidingItem, trip)"> {{ 'EDIT_BUTTON' | translate }} </ion-item-option>
+        <ion-item-option color="danger" (click)="delete(trip)"> {{ 'DELETE_BUTTON' | translate }} </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="new()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    
+    </ion-list>
+    
+    <ion-list   [hidden] = "type2 != 'segment5'" >
+      
+      <div class="map-container">
+        <div style="height: 740px" id="map"></div>
+      </div>
+      <!-- <div class="ion-padding">
+        <ion-button (click)="sendlocation()" expand="block">
+          Get Location
+        </ion-button> 
+      <ion-list>
+        <ion-list-header>
+          <ion-label>Location Coordinates</ion-label>
+        </ion-list-header>
+        <ion-item>
+          <ion-label>
+            Latitude
+          </ion-label>
+          <ion-badge color="danger" slot="end">{{latitude}}</ion-badge>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            Longitude
+          </ion-label>
+          <ion-badge color="danger" slot="end">{{longitude}}</ion-badge>
+        </ion-item>
+        </ion-list>    
+      </div> -->
+      <div id="myDiv" style="bottom:20%; left:5px;">
+        <ion-grid>
+          <ion-row>
+              <ion-col style="text-align:center;" size="3">
+                <ion-button id="open-modal8"  shape="round" color="primary"> <ion-label  style="font-size:12px">f
+                  
+                  </ion-label>
+                </ion-button>
+    
+              </ion-col>
+                
+          
+          </ion-row>
+        </ion-grid>
+      </div>
+      <ion-modal trigger="open-modal8" (willDismiss)="onWillDismiss($event)" mode="ios">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel()" >Cancel</ion-button>
+              </ion-buttons>
+              <ion-title >Fleet Info</ion-title>
+              <!-- <ion-popover trigger="click-trigger" triggerAction="click">
+                <ng-template>
+                  <ion-content class="ion-padding">Room no.102 is Empty but the Electrical Appliances are Running</ion-content>
+                </ng-template>
+              </ion-popover> -->
+              <ion-buttons slot="end">
+                <ion-button (click)="confirm()" [strong]="true"></ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content >
+            <ion-grid style="font-size:12px">
+              
+          
+              <ion-row>
+                <ion-col size="2"></ion-col>
+                <ion-col  size="2" >Condition</ion-col>
+                <ion-col size="2" >IT</ion-col>
+                <ion-col size="2" >DC</ion-col>
+                <ion-col size="1" >PP</ion-col>
+                <ion-col size="1" >Fuel</ion-col>
+                <ion-col size="2" >DB</ion-col>
+          
+              </ion-row>
+              <ion-row>
+                <ion-col size="2"> Bus1</ion-col>
+                <ion-col size="2" >Good</ion-col>
+                <ion-col size="2" >Yes</ion-col>
+                <ion-col size="2" >2250Km</ion-col>
+                <ion-col size="1" >20</ion-col>
+                <ion-col size="1" >Yes</ion-col>
+                <ion-col size="2" >Good</ion-col>
+             </ion-row>
+    
+              <ion-row>
+                <ion-col size="2"> Bus2</ion-col>
+                <ion-col size="2">Good</ion-col>
+                <ion-col size="2">Yes
+                  <!-- <ion-button  id="click-trigger" fill="none" > <ion-label  style="font-size:12px">NO</ion-label>
+                  </ion-button>
+                  <ion-popover trigger="click-trigger" triggerAction="click">
+                    <ng-template>
+                    <ion-content class="ion-padding">The Bus is Late by 30min Due to Traffic.</ion-content>
+                  </ng-template>
+                </ion-popover> -->
+                <!-- <ion-button id="click-trigger">no</ion-button>
+    <ion-popover trigger="click-trigger" triggerAction="click">
+      <ng-template>
+        <ion-content class="ion-padding">Hello World!</ion-content>
+      </ng-template>
+    </ion-popover> -->
+    
+                </ion-col>
+                <ion-col size="2">200Km</ion-col>
+                <ion-col size="1">28</ion-col>
+                <ion-col size="1" > <ion-text color="primary">NO</ion-text> </ion-col>
+                <ion-col size="2">over speed</ion-col>
+              </ion-row>
+            
+              <ion-row>
+                <ion-col size="2"> Bus3</ion-col>
+                <ion-col size="2">Bad</ion-col>
+                <ion-col size="2"><ion-text color="primary">NO</ion-text></ion-col>
+                <ion-col size="2">1000Km</ion-col>
+                <ion-col size="1">17</ion-col>
+                <ion-col size="1"> Yes </ion-col>
+                <ion-col size="2">over speed</ion-col>
+              </ion-row>
+    
+              <ion-row>
+                <ion-col size="2"> Bus4</ion-col>
+                <ion-col size="2">Good</ion-col>
+                <ion-col size="2">Yes</ion-col>
+                <ion-col size="2">500Km</ion-col>
+                <ion-col size="1">20</ion-col>
+                <ion-col size="1"> Yes </ion-col>
+                <ion-col size="2">Good</ion-col>
+              </ion-row>
+    
+              <ion-row>
+                <ion-col size="2"> Bus5</ion-col>
+                <ion-col size="2">Bad</ion-col>
+                <ion-col size="2"><ion-text color="primary">NO</ion-text></ion-col>
+                <ion-col size="2">2000Km</ion-col>
+                <ion-col size="1">17</ion-col>
+                <ion-col size="1"> <ion-text color="primary">NO</ion-text> </ion-col>
+                <ion-col size="2">Fast Cornering</ion-col>
+              </ion-row>
+    
+              <ion-row>
+                <ion-col size="2"> Bus6</ion-col>
+                <ion-col size="2">Good</ion-col>
+                <ion-col size="2">Yes</ion-col>
+                <ion-col size="2">1700Km</ion-col>
+                <ion-col size="1">17</ion-col>
+                <ion-col size="1"> Yes </ion-col>
+                <ion-col size="2">Good</ion-col>
+              </ion-row>
+          
+            </ion-grid>
+            <div  style="font-size:12px">
+            IT= In Time<br>
+            DC= Distance Covered<br>
+            PP= People Present<br>
+            DB= Driver Behaviour
+          </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+      
+    </ion-list>
+  <!-- </div> -->
+  <!-- <ion-segment value="default" [(ngModel)]="type">
+    <ion-segment-button value="default">
+      <ion-icon  color="dark"></ion-icon>
+      <ion-label >Running </ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="segment">
+      <ion-icon  color="dark"></ion-icon>
+      <ion-label>Stopped </ion-label>
+    </ion-segment-button>
+    <ion-segment-button  value="segment1">
+      <ion-icon  color="dark"></ion-icon>
+      <ion-label>Idle</ion-label>
+    </ion-segment-button >
+    <ion-segment-button  value="segment2">
+      <ion-icon  color="dark"></ion-icon>
+      <ion-label>In Active</ion-label>
+    </ion-segment-button >
+  </ion-segment>  -->
+  
+  
+  
+  
+</ion-content>

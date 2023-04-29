@@ -26,6 +26,15 @@ const routes: Routes = [
         ],
       },
       {
+        path: 'track',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../track/track.module').then(m => m.TrackPageModule),
+          },
+        ],
+      },
+      {
         path: 'unauthorized',
         children: [
           {
