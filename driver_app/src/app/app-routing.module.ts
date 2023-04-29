@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'routing',
     loadChildren: () => import('./pages/routing/routing.module').then( m => m.RoutingPageModule)
   },
+  {
+    path: 'track',
+    loadChildren: () => import('./pages/track/track.module').then( m => m.TrackPageModule)
+  },
 
 ];
 @NgModule({
