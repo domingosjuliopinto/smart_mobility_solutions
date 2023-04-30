@@ -5,12 +5,14 @@
     </ion-buttons>
     <ion-title class="title">Fleet</ion-title>
 
+    <div *ngIf="isNew">
     <ion-buttons slot="end">
       <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary" class="ion-padding" expand="block" fill="outline">
         <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
         Submit
       </ion-button>
     </ion-buttons>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -27,6 +29,7 @@
       <ion-label>ID</ion-label>
       <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
     </ion-item>
+    <div *ngIf="isNew">
     <ion-item fill="outline">
       <ion-label position="floating">Driver Name</ion-label>
       <ion-input type="text" name="driver_name" formControlName="driver_name"></ion-input>
@@ -70,5 +73,80 @@
         <ion-select-option value="Truck">Truck</ion-select-option>
       </ion-select>
     </ion-item>
+  </div>
+  <div *ngIf="!isNew">
+    <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col>Vehicle Plate No : {{fleet.vehicle_plate_no}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Vehicle Type</ion-col>
+        <ion-col>{{fleet.vehicle_type}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>Status</ion-col>
+        <ion-col>{{fleet.vehicle_status}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text id="receiver_pop-button">Driver Details</ion-text>
+          <!-- <ion-popover trigger="pop-button" size="cover">
+            <ng-template>
+              <ion-content class="ion-padding">Hello!</ion-content>
+            </ng-template>
+          </ion-popover> -->
+          <ion-popover trigger="receiver_pop-button" side="bottom" alignment="center">
+            <ng-template>
+              <ion-content class="ion-padding custom__text">
+                Driver Name : {{fleet.driver_name}}<br /><br />
+                Driver Email : {{fleet.driver_email}}<br /><br />
+                Driver Address : {{fleet.driver_address}}<br /><br />
+                Driver Phone No : {{fleet.driver_phone_no}}
+              </ion-content>
+            </ng-template>
+          </ion-popover>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+ 
+  &nbsp;
+  <ion-buttons>
+    <div *ngIf="fleet.vehicle_status=='Free'||fleet.vehicle_status=='Occupied'">
+    <ion-button [disabled]="!isReadyToSave" (click)="accident()" color="danger" class="ion-padding" expand="block" fill="outline">
+      <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+      Change Status to<br>'Accident'
+    </ion-button>
+    <br>
+    <ion-button [disabled]="!isReadyToSave" (click)="repair()" color="warning" class="ion-padding" expand="block" fill="outline">
+      <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+      Change Status to<br>'Repairs'
+    </ion-button>
+    </div>
+    <div *ngIf="fleet.vehicle_status=='Accident'">
+      <ion-button [disabled]="!isReadyToSave" (click)="repair()" color="warning" class="ion-padding" expand="block" fill="outline">
+        <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+        Change Status to<br>'Repairs'
+      </ion-button>
+      <br>
+      <ion-button [disabled]="!isReadyToSave" (click)="free()" color="success" class="ion-padding" expand="block" fill="outline">
+        <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+        Change Status to<br>'Free'
+      </ion-button>
+    </div>
+    <div *ngIf="fleet.vehicle_status=='Repairs'">
+      <ion-button [disabled]="!isReadyToSave" (click)="free()" color="success" class="ion-padding" expand="block" fill="outline">
+        <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+        Change Status to<br>'Free'
+      </ion-button>
+      <br>
+      <ion-button [disabled]="!isReadyToSave" (click)="accident()" color="danger" class="ion-padding" expand="block" fill="outline">
+        <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+        Change Status to<br>'Accident'
+      </ion-button>
+    </div>
+  </ion-buttons>
+  </div>
   </form>
 </ion-content>

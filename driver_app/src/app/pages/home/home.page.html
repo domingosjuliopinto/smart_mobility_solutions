@@ -59,7 +59,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content scroll-y="false" class="ion-padding">
+    <ion-content class="ion-padding">
       <div class="screen__background_back">
         <span class="screen__background__shape screen__background__shape4_back"></span>
         <span class="screen__background__shapesmsv5/src/app/pages/home/home.page.ts screen__background__shape3"></span>
@@ -88,6 +88,7 @@
           </ion-buttons>
         </div>
         <div *ngIf="driv_acc_email">
+
           <ion-buttons class="button login__submit" type="submit" id="login" routerLink="/tabs/parcel">
             <ion-icon name="bag-check-outline" class="bags"></ion-icon>&nbsp;&nbsp;&nbsp;
             <span class="button__text">Jobs Assigned</span>
@@ -96,6 +97,11 @@
           <ion-buttons class="button login__submit" type="submit" id="login" routerLink="/tabs/driverstats">
             <ion-icon name="stats-chart-outline" class="bags"></ion-icon>&nbsp;&nbsp;
             <span class="button__text">Check Stats</span>
+          </ion-buttons>
+
+          <ion-buttons class="button login__submit" type="submit" id="login" routerLink="/tabs/fleet/{{drivid}}/edit">
+            <ion-icon name="person-outline" class="bags"></ion-icon>&nbsp;&nbsp;&nbsp;
+            <span class="button__text">Emergency Status</span>
           </ion-buttons>
         </div>
       </div>

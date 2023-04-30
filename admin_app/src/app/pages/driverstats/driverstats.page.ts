@@ -11,6 +11,10 @@ import { CanvasRenderer } from 'echarts/renderers';
 
 import { Fleet } from '../entities/fleet/fleet.model';
 import { FleetService } from '../entities/fleet/fleet.service';
+import { Parcel } from '../entities/parcel/parcel.model';
+import { ParcelService } from '../entities/parcel/parcel.service';
+import { Delivery } from '../entities/delivery/delivery.model';
+import { DeliveryService } from '../entities/delivery/delivery.service';
 
 @Component({
   selector: 'app-driverstats',
@@ -20,6 +24,8 @@ import { FleetService } from '../entities/fleet/fleet.service';
 export class DriverStatsPage implements OnInit{
 
   fleets: Fleet[];
+  parcels: Parcel[];
+  deliveries: Delivery[];
   i = 0;
 
   //for Fleet Pie Diagram
@@ -36,18 +42,36 @@ export class DriverStatsPage implements OnInit{
   Car = 0
   Tempo = 0
   Truck = 0
+  //for package management donut
+  Source = 0
+  Destination = 0
+  OnWay = 0
+  //no of stars
+  star0 = 0
+  star1 = 0
+  star2 = 0
+  star3 = 0
+  star4 = 0
+  star5 = 0
+
 
   constructor(
     private el: ElementRef, 
     private renderer: Renderer2,
     private fleetService: FleetService,
+    private parcelService: ParcelService,
+    private deliveryService: DeliveryService,
     private toastCtrl: ToastController,
     ) {
       this.fleets = [];
+      this.parcels = [];
+      this.deliveries = [];
     }
 
     ngOnInit(){
       this.loadAll();
+      this.loadAll1();
+      this.loadAll2();
     }
 
     
@@ -100,6 +124,87 @@ export class DriverStatsPage implements OnInit{
               }
               if(this.fleets[this.i].vehicle_type=='Truck'){
                 this.Truck+=1
+              }
+            }
+            if (typeof refresher !== 'undefined') {
+              setTimeout(() => {
+                refresher.target.complete();
+              }, 750);
+            }
+          },
+          async error => {
+            console.error(error);
+            const toast = await this.toastCtrl.create({ message: 'Failed to load data', duration: 2000, position: 'middle' });
+            await toast.present();
+          }
+        );
+    }
+
+    async loadAll1(refresher?) {
+      this.parcelService
+        .query()
+        .pipe(
+          filter((res: HttpResponse<Parcel[]>) => res.ok),
+          map((res: HttpResponse<Parcel[]>) => res.body)
+        )
+        .subscribe(
+          (response: Parcel[]) => {
+            this.parcels = response;
+            for(this.i=0;this.i<this.parcels?.length;this.i++){
+              //For Package Donut Diagram
+              if(this.parcels[this.i].status=='Parcel with Sender'){
+                this.Source+=1
+              }
+              if(this.parcels[this.i].status=='Parcel with Driver'){
+                this.OnWay+=1
+              }
+              if(this.parcels[this.i].status=='Completed'){
+                this.Destination+=1
+              }
+            }
+            if (typeof refresher !== 'undefined') {
+              setTimeout(() => {
+                refresher.target.complete();
+              }, 750);
+            }
+          },
+          async error => {
+            console.error(error);
+            const toast = await this.toastCtrl.create({ message: 'Failed to load data', duration: 2000, position: 'middle' });
+            await toast.present();
+          }
+        );
+    }
+
+    async loadAll2(refresher?) {
+      this.deliveryService
+        .query()
+        .pipe(
+          filter((res: HttpResponse<Delivery[]>) => res.ok),
+          map((res: HttpResponse<Delivery[]>) => res.body)
+        )
+        .subscribe(
+          (response: Delivery[]) => {
+            this.deliveries = response;
+            for(this.i=0;this.i<this.deliveries?.length;this.i++){
+              //For Package Donut Diagram
+              if(this.deliveries[this.i].star_received==0){
+                this.star0+=1
+              }
+              if(this.deliveries[this.i].star_received==1){
+                this.star1+=1
+              }
+              if(this.deliveries[this.i].star_received==2){
+                this.star2+=1
+              }
+              if(this.deliveries[this.i].star_received==3){
+                this.star3+=1
+              }
+              if(this.deliveries[this.i].star_received==4){
+                this.star4+=1
+              }
+              if(this.deliveries[this.i].star_received==5){
+                this.star5+=1
               }
             }
             if (typeof refresher !== 'undefined') {
@@ -267,9 +372,9 @@ export class DriverStatsPage implements OnInit{
             show: false,
           },
           data: [
-            { value: 735, name: 'At Source' },
-            { value: 580, name: 'At Destination' },
-            { value: 1048, name: 'On the Way' },
+            { value: this.Source, name: 'At Source' },
+            { value: this.Destination, name: 'At Destination' },
+            { value: this.OnWay, name: 'On the Way' },
           ],
         },
       ],
@@ -277,19 +382,19 @@ export class DriverStatsPage implements OnInit{
 
     const options3: EChartsOption = {
       title: {
-        text: 'Packages Delivered Per Day',
+        text: 'Total Stars Received',
         left: 'center'
       },
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        data: ['0', '1', '2', '3', '4', '5'],
       },
       yAxis: {
         type: 'value'
       },
       series: [
         {
-          data: [120, 200, 150, 80, 70, 110, 130],
+          data: [this.star0,this.star1,this.star2,this.star3,this.star4,this.star5],
           type: 'line'
         }
       ]

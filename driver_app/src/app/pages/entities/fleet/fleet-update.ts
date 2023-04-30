@@ -12,13 +12,14 @@ import { AccountService } from '../../../services/auth/account.service';
 @Component({
   selector: 'page-fleet-update',
   templateUrl: 'fleet-update.html',
-  styleUrls: ['fleet-update.scss'],
+  styleUrls: ['fleet-update.scss','fleet-detail.scss'],
 })
 export class FleetUpdatePage implements OnInit {
   fleet: Fleet;
   isSaving = false;
   isNew = true;
   isReadyToSave: boolean;
+  change = null;
 
   form = this.formBuilder.group({
     id: [null, []],
@@ -67,6 +68,20 @@ export class FleetUpdatePage implements OnInit {
     this.navController.navigateBack('');
   }
 
+  accident(){
+    this.change = "Accident"
+    this.save()
+  }
+
+  repair(){
+    this.change = "Repairs"
+    this.save()
+  }
+
+  free(){
+    this.change = "Free"
+    this.save()
+  }
 
   updateForm(fleet: Fleet) {
     this.form.patchValue({
@@ -128,7 +143,7 @@ export class FleetUpdatePage implements OnInit {
       driver_phone_no: this.form.get(['driver_phone_no']).value,
       vehicle_plate_no: this.form.get(['vehicle_plate_no']).value,
       vehicle_type: this.form.get(['vehicle_type']).value,
-      vehicle_status: this.form.get(['vehicle_type']).value == 'None' ? 'No Vehicle Assigned' : 'Free',
+      vehicle_status: this.change?this.change:(this.form.get(['vehicle_type']).value == 'None' ? 'No Vehicle Assigned' : 'Free'),
     };
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, Platform, IonItemSliding } from '@ionic/angular';
+import { NavController, ToastController, Platform } from '@ionic/angular';
 import { filter, map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { Parcel } from './parcel.model';

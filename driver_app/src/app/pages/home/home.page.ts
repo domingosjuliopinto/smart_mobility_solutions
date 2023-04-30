@@ -65,6 +65,7 @@ export class HomePage implements OnInit {
   account: Account;
   i = 0;
   driv_acc_email = false;
+  drivid = 0;
 
   constructor(
     public navController: NavController,
@@ -99,6 +100,7 @@ export class HomePage implements OnInit {
           for (this.i = 0; this.i < this.fleets?.length; this.i++) {
             if (this.account.email == this.fleets[this.i].driver_email) {
               this.driv_acc_email = true;
+              this.drivid = this.fleets[this.i].id;
               break;
             }
           }
