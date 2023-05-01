@@ -8,7 +8,8 @@
 
     <ion-content>
       <!-- This part is to move to the other pages -->
-      <div *ngFor="let p of pages" class="menu_pages">
+      <div *ngIf="!fleets?.length || !driv_acc_email">
+      <div *ngFor="let p of pages1" class="menu_pages">
         <ion-menu-toggle *ngIf="p.url">
           <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active" lines="none">
             <ion-icon [name]="p.icon" slot="start"></ion-icon>
@@ -38,6 +39,39 @@
           </ion-menu-toggle>
         </ion-list>
       </div>
+    </div>
+    <div *ngIf="driv_acc_email">
+      <div *ngFor="let p of pages2" class="menu_pages">
+        <ion-menu-toggle *ngIf="p.url">
+          <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active" lines="none">
+            <ion-icon [name]="p.icon" slot="start"></ion-icon>
+            <ion-label class="ion-text-center">{{ p.title }}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-item
+          button
+          *ngIf="p.children?.length > 0"
+          (click)="p.open = !p.open"
+          [class.active-parent]="p.open"
+          detail="false"
+          lines="none"
+        >
+          <ion-icon slot="start" name="albums" *ngIf="!p.open"></ion-icon>
+          <ion-icon slot="start" name="albums-outline" *ngIf="p.open"></ion-icon>
+          <ion-label class="ion-text-center">{{ p.title }}</ion-label>
+        </ion-item>
+
+        <ion-list *ngIf="p.open" lines="none" class="menu_pages">
+          <ion-menu-toggle>
+            <ion-item *ngFor="let sub of p.children" [routerLink]="sub.url" routerDirection="root" routerLinkActive="active">
+              <ion-icon [name]="sub.icon" slot="start"></ion-icon>
+              <ion-label class="ion-text-center"> {{ sub.title }} </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </div>
+    </div>
     </ion-content>
   </ion-menu>
 
@@ -59,7 +93,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content class="ion-padding">
+    <ion-content scroll-y="false" class="ion-padding">
       <div class="screen__background_back">
         <span class="screen__background__shape screen__background__shape4_back"></span>
         <span class="screen__background__shapesmsv5/src/app/pages/home/home.page.ts screen__background__shape3"></span>
@@ -67,7 +101,7 @@
         <span class="screen__background__shape screen__background__shape1"></span>
       </div>
 
-      <div text-center style="height: 57%">
+      <div text-center style="height: 45%">
         <img src="../../../assets/img/deliveryman.png" />
       </div>
 

@@ -24,8 +24,24 @@ export class DeliveryPage {
     this.deliveries = [];
   }
 
+  sent_parcel_count = false;
+  received_parcel_count = false;
+  past_parcel_count = false;
+  parcel_history = 0;
+
   async ionViewWillEnter() {
     await this.loadAll();
+  }
+
+  ionViewDidEnter() {
+    setTimeout(() => {
+      const sentparcelid = document.getElementById('sentparcelid');
+      if (!sentparcelid) {
+        this.sent_parcel_count = true;
+      } else {
+        this.sent_parcel_count = false;
+      }
+    }, 300);
   }
 
   async loadAll(refresher?) {
@@ -78,5 +94,35 @@ export class DeliveryPage {
 
   async view(delivery: Delivery) {
     await this.navController.navigateForward('/tabs/delivery/' + delivery.id + '/view');
+  }
+
+  async historyview(number) {
+    this.parcel_history = number;
+    if (this.parcel_history == 0) {
+      setTimeout(() => {
+        const sentparcelid = document.getElementById('sentparcelid');
+        if (!sentparcelid) {
+          this.sent_parcel_count = true;
+        } else {
+          this.sent_parcel_count = false;
+        }
+      }, 10);
+    } else if (this.parcel_history == 1) {
+      setTimeout(() => {
+        const receivedparcelid = document.getElementById('receivedparcelid');
+        if (!receivedparcelid) {
+          this.received_parcel_count = true;
+        } else {
+          this.received_parcel_count = false;
+        }
+      }, 10);
+    }else if (this.parcel_history == 2) {setTimeout(() => {
+      const pastparcelid = document.getElementById('pastparcelid');
+      if (!pastparcelid) {
+        this.past_parcel_count = true;
+      } else {
+        this.past_parcel_count = false;
+      }
+    }, 10);}
   }
 }

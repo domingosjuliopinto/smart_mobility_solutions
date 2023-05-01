@@ -1,54 +1,90 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-padding">
+    <ion-buttons slot="start" routerLink="/tabs/fleet/{{fleet.id}}/view">
+      <ion-icon name="arrow-back-outline" class="back"></ion-icon>
     </ion-buttons>
-    <ion-title>Fleet</ion-title>
-
+    <ion-title class="title">Fleet Details</ion-title>
     <ion-buttons slot="end">
-      <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+      <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary" class="ion-padding" expand="block" fill="outline">
         <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
-        <ion-icon name="checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+        Submit
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="screen__background_back">
+    <span class="screen__background__shape screen__background__shape4_back"></span>
+    <span class="screen__background__shape screen__background__shape3"></span>
+    <span class="screen__background__shape screen__background__shape2"></span>
+    <span class="screen__background__shape screen__background__shape1"></span>
+  </div>
   <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
-    <ion-list>
       <ion-item [hidden]="!form.id">
         <ion-label>ID</ion-label>
         <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
       </ion-item>
-      <ion-item>
+      &nbsp;
+      <ion-item fill="outline">
         <ion-label position="floating">Driver Name</ion-label>
         <ion-input type="text" name="driver_name" formControlName="driver_name"></ion-input>
       </ion-item>
-      <ion-item>
+      &nbsp;
+      <ion-item fill="outline">
         <ion-label position="floating">Driver Email</ion-label>
         <ion-input type="text" name="driver_email" formControlName="driver_email"></ion-input>
       </ion-item>
-      <ion-item>
+      &nbsp;
+      <ion-item fill="outline">
         <ion-label position="floating">Driver Address</ion-label>
         <ion-input type="text" name="driver_address" formControlName="driver_address"></ion-input>
       </ion-item>
-      <ion-item>
+      &nbsp;
+      <ion-item fill="outline">
         <ion-label position="floating">Driver Phone No</ion-label>
         <ion-input type="text" name="driver_phone_no" formControlName="driver_phone_no"></ion-input>
       </ion-item>
-      <ion-item>
+      &nbsp;
+      <ion-item fill="outline">
         <ion-label position="floating">Vehicle Plate No</ion-label>
         <ion-input type="text" name="vehicle_plate_no" formControlName="vehicle_plate_no"></ion-input>
       </ion-item>
-      <ion-item>
+      &nbsp;
+      <ion-item fill="outline">
         <ion-label position="floating">Vehicle Type</ion-label>
-        <ion-input type="text" name="vehicle_type" formControlName="vehicle_type"></ion-input>
+        <ion-select
+          name="vehicle_type"
+          formControlName="vehicle_type"
+          placeholder="Select Vehicle Type"
+          [interfaceOptions]="customAlertOptions"
+          interface="alert"
+        >
+          <ion-select-option value="None">None</ion-select-option>
+          <ion-select-option value="Cycle">Cycle</ion-select-option>
+          <ion-select-option value="Scooter">Scooter</ion-select-option>
+          <ion-select-option value="Bike">Bike</ion-select-option>
+          <ion-select-option value="Rickshaw">Rickshaw</ion-select-option>
+          <ion-select-option value="Car">Car</ion-select-option>
+          <ion-select-option value="Tempo">Tempo</ion-select-option>
+          <ion-select-option value="Truck">Truck</ion-select-option>
+        </ion-select>
       </ion-item>
-      <ion-item>
+      &nbsp;
+      <ion-item fill="outline">
         <ion-label position="floating">Vehicle Status</ion-label>
-        <ion-input type="text" name="vehicle_status" formControlName="vehicle_status"></ion-input>
+        <ion-select
+          name="vehicle_status"
+          formControlName="vehicle_status"
+          placeholder="Select Vehicle Status"
+          [interfaceOptions]="customAlertOptions"
+          interface="alert"
+        >
+          <ion-select-option value="Free">Free</ion-select-option>
+          <ion-select-option value="Occupied">Occupied</ion-select-option>
+          <ion-select-option value="Accident">Accident</ion-select-option>
+          <ion-select-option value="Repairs">Repairs</ion-select-option>
+        </ion-select>
       </ion-item>
-    </ion-list>
   </form>
 </ion-content>

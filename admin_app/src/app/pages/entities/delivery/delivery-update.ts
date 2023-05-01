@@ -10,6 +10,7 @@ import { DeliveryService } from './delivery.service';
 @Component({
   selector: 'page-delivery-update',
   templateUrl: 'delivery-update.html',
+  styleUrls: ['delivery-update.scss'],
 })
 export class DeliveryUpdatePage implements OnInit {
   delivery: Delivery;
@@ -60,7 +61,6 @@ export class DeliveryUpdatePage implements OnInit {
       parcel_id: delivery.parcel_id,
       driver_id: delivery.driver_id,
       request_time: this.isNew ? new Date().toISOString() : delivery.request_time,
-      assigned_time: this.isNew ? new Date().toISOString() : delivery.assigned_time,
       estimated_time: this.isNew ? new Date().toISOString() : delivery.estimated_time,
       ended_time: this.isNew ? new Date().toISOString() : delivery.ended_time,
       star_received: delivery.star_received,
@@ -113,10 +113,10 @@ export class DeliveryUpdatePage implements OnInit {
       parcel_id: this.form.get(['parcel_id']).value,
       driver_id: this.form.get(['driver_id']).value,
       request_time: new Date(this.form.get(['request_time']).value),
-      assigned_time: new Date(this.form.get(['assigned_time']).value),
+      assigned_time: new Date().toISOString().slice(0, 19) + 'Z',
       estimated_time: new Date(this.form.get(['estimated_time']).value),
-      ended_time: new Date(this.form.get(['ended_time']).value),
-      star_received: this.form.get(['star_received']).value,
+      ended_time: null,
+      star_received: null,
     };
   }
 }

@@ -1,54 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+<ion-header [translucent]="true">
+  <ion-toolbar class="ion-padding">
+    <ion-buttons slot="start" routerLink="/tabs/delivery/{{delivery.id}}/view">
+      <ion-icon name="arrow-back-outline" class="back"></ion-icon>
     </ion-buttons>
-    <ion-title>Delivery</ion-title>
-
+    <ion-title class="title">Assign</ion-title>
     <ion-buttons slot="end">
-      <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+      <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary" class="ion-padding" expand="block" fill="outline">
         <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
-        <ion-icon name="checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+        Submit
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="screen__background_back">
+    <span class="screen__background__shape screen__background__shape4_back"></span>
+    <span class="screen__background__shape screen__background__shape3"></span>
+    <span class="screen__background__shape screen__background__shape2"></span>
+    <span class="screen__background__shape screen__background__shape1"></span>
+  </div>
   <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
-    <ion-list>
       <ion-item [hidden]="!form.id">
         <ion-label>ID</ion-label>
         <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Parcel Id</ion-label>
-        <ion-input type="number" name="parcel_id" formControlName="parcel_id"></ion-input>
+      &nbsp;
+      <ion-item fill="outline">
+        <ion-input type="text" name="parcel_id" placeholder="{{delivery.parcel_id}}" disabled></ion-input>
       </ion-item>
-      <ion-item>
+      &nbsp;
+      <ion-item fill="outline">
         <ion-label position="floating">Driver Id</ion-label>
         <ion-input type="number" name="driver_id" formControlName="driver_id"></ion-input>
       </ion-item>
+      &nbsp;
       <ion-item>
-        <ion-label>Request Time</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" formControlName="request_time" id="field_request_time"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>Assigned Time</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" formControlName="assigned_time" id="field_assigned_time"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>Estimated Time</ion-label>
+        <ion-label position="floating">Estimated Time</ion-label>
         <ion-datetime displayFormat="MM/DD/YYYY HH:mm" formControlName="estimated_time" id="field_estimated_time"></ion-datetime>
       </ion-item>
-      <ion-item>
-        <ion-label>Ended Time</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" formControlName="ended_time" id="field_ended_time"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Star Received</ion-label>
-        <ion-input type="number" name="star_received" formControlName="star_received"></ion-input>
-      </ion-item>
-    </ion-list>
   </form>
 </ion-content>

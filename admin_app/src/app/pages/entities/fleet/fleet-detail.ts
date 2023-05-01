@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'page-fleet-detail',
   templateUrl: 'fleet-detail.html',
+  styleUrls: ['fleet-detail.scss'],
 })
 export class FleetDetailPage implements OnInit {
   fleet: Fleet = {};

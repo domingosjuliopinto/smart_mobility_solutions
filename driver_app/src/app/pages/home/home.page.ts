@@ -20,7 +20,7 @@ SwiperCore.use([Autoplay, EffectCube]);
 export class HomePage implements OnInit {
   fleets: Fleet[];
 
-  pages = [
+  pages1 = [
     {
       title: 'Home',
       url: '/tabs/home',
@@ -32,21 +32,13 @@ export class HomePage implements OnInit {
       icon: 'map',
     },
     {
-      title: 'Tasks Offered',
-      children: [
-        {
-          title: 'Jobs Assigned',
-          url: '/tabs/jobassign',
-          icon: 'bag-check-outline',
-        },
-        {
-          title: 'Work Stats',
-          url: '/tabs/driverstats',
-          icon: 'stats-chart-outline',
-        },
-      ],
+      title: 'Fill Driver Details',
+      url: '/tabs/fleet/new',
+      icon: 'person-outline',
     },
   ];
+
+  pages2 = [];
 
   @ViewChild('swiper') swiper: SwiperComponent;
   config: SwiperOptions = {
@@ -101,6 +93,36 @@ export class HomePage implements OnInit {
             if (this.account.email == this.fleets[this.i].driver_email) {
               this.driv_acc_email = true;
               this.drivid = this.fleets[this.i].id;
+              this.pages2 = [{
+                title: 'Home',
+                url: '/tabs/home',
+                icon: 'home',
+              },
+              {
+                title: 'Map',
+                url: '/tabs/map',
+                icon: 'map',
+              },
+              {
+                title: 'Emergency Status',
+                url: '/tabs/fleet/'+this.drivid+'/edit',
+                icon: 'person-outline',
+              },
+              {
+                title: 'Tasks Offered',
+                children: [
+                  {
+                    title: 'Jobs Assigned',
+                    url: '/tabs/parcel',
+                    icon: 'bag-check-outline',
+                  },
+                  {
+                    title: 'Work Stats',
+                    url: '/tabs/driverstats',
+                    icon: 'stats-chart-outline',
+                  },
+                ],
+              },]
               break;
             }
           }

@@ -10,6 +10,7 @@ import { FleetService } from './fleet.service';
 @Component({
   selector: 'page-fleet-update',
   templateUrl: 'fleet-update.html',
+  styleUrls: ['fleet-update.scss'],
 })
 export class FleetUpdatePage implements OnInit {
   fleet: Fleet;

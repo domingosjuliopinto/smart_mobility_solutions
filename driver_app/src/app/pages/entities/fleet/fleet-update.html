@@ -4,15 +4,12 @@
       <ion-icon name="arrow-back-outline" class="back"></ion-icon>
     </ion-buttons>
     <ion-title class="title">Fleet</ion-title>
-
-    <div *ngIf="isNew">
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="isNew">
       <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary" class="ion-padding" expand="block" fill="outline">
         <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
         Submit
       </ion-button>
     </ion-buttons>
-    </div>
   </ion-toolbar>
 </ion-header>
 

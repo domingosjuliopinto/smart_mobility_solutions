@@ -20,13 +20,104 @@
     <span class="screen__background__shape screen__background__shape1"></span>
   </div>
 
-  <div>
+  <ion-button (click)="historyview(0)" color="success">Free Fleet</ion-button>
+  <ion-button (click)="historyview(1)">Occupied Fleet</ion-button><br><br>
+  <ion-button (click)="historyview(2)" color="danger">Crisis Fleet</ion-button>
+
+  <div *ngIf="parcel_history == 0">
     <br />
+    <ion-label>Fleet Free</ion-label>
     <ion-card *ngFor="let fleet of fleets; trackBy: trackId">
       <!-- Check parcel-detail.html for comments -->
-      <ion-grid (click)="view(fleet)">
+      <ion-grid (click)="view(fleet)" *ngIf="fleet.vehicle_status=='Free'">
         <ion-row>
-          <ion-col><div>ID : {{fleet.id}}</div></ion-col>
+          <ion-col><div id="sentparcelid">ID : {{fleet.id}}</div></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver Name</ion-col>
+          <ion-col>{{fleet.driver_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver Email</ion-col>
+          <ion-col>{{fleet.driver_email}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver Address</ion-col>
+          <ion-col>{{fleet.driver_address}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver Phone No</ion-col>
+          <ion-col>{{fleet.driver_phone_no}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Vehicle Plate No</ion-col>
+          <ion-col>{{fleet.vehicle_plate_no}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Vehicle Type</ion-col>
+          <ion-col>{{fleet.vehicle_type}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Vehicle Status</ion-col>
+          <ion-col>{{fleet.vehicle_status}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <div class="ion-text-center" *ngIf="!fleets?.length">
+      <ion-label> No Fleets found. </ion-label>
+    </div>
+  </div>
+  <div *ngIf="parcel_history == 1">
+    <br />
+    <ion-label>Fleet Occupied</ion-label>
+    <ion-card *ngFor="let fleet of fleets; trackBy: trackId">
+      <!-- Check parcel-detail.html for comments -->
+      <ion-grid (click)="view(fleet)" *ngIf="fleet.vehicle_status=='Occupied'">
+        <ion-row>
+          <ion-col><div id="receivedparcelid">ID : {{fleet.id}}</div></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver Name</ion-col>
+          <ion-col>{{fleet.driver_name}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver Email</ion-col>
+          <ion-col>{{fleet.driver_email}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver Address</ion-col>
+          <ion-col>{{fleet.driver_address}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Driver Phone No</ion-col>
+          <ion-col>{{fleet.driver_phone_no}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Vehicle Plate No</ion-col>
+          <ion-col>{{fleet.vehicle_plate_no}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Vehicle Type</ion-col>
+          <ion-col>{{fleet.vehicle_type}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Vehicle Status</ion-col>
+          <ion-col>{{fleet.vehicle_status}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <div class="ion-text-center" *ngIf="!fleets?.length">
+      <ion-label> No Fleets found. </ion-label>
+    </div>
+  </div>
+  <div *ngIf="parcel_history == 2">
+    <br />
+    <ion-label>Fleet in Accident or Repairs</ion-label>
+    <ion-card *ngFor="let fleet of fleets; trackBy: trackId">
+      <!-- Check parcel-detail.html for comments -->
+      <ion-grid (click)="view(fleet)" *ngIf="fleet.vehicle_status=='Accident'||fleet.vehicle_status=='Repairs'">
+        <ion-row>
+          <ion-col><div id="pastparcelid">ID : {{fleet.id}}</div></ion-col>
         </ion-row>
         <ion-row>
           <ion-col>Driver Name</ion-col>

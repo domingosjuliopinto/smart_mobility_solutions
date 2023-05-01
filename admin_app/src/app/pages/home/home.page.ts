@@ -26,12 +26,22 @@ export class HomePage implements OnInit {
       icon: 'map',
     },
     {
-      title: 'Tracking Services',
+      title: 'Admin Services',
       children: [
         {
-          title: 'Send Parcel',
-          url: '/tabs/parcel/new',
+          title: 'Parcel',
+          url: '/tabs/parcel/',
           icon: 'cube-outline',
+        }, 
+        {
+          title: 'Delivery',
+          url: '/tabs/delivery/',
+          icon: 'clipboard-outline',
+        }, 
+        {
+          title: 'Fleet',
+          url: '/tabs/fleet/',
+          icon: 'locate-outline',
         },
         {
           title: 'Check Stats',
