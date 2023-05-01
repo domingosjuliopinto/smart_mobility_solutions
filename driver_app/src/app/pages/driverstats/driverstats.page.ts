@@ -85,6 +85,9 @@ export class DriverStatsPage implements OnInit{
           this.loadAll();
           this.loadAll2();
           this.loadAll1();
+          setTimeout(() => {
+            this.graphs();
+          }, 300);
         }
       });
     }
@@ -252,14 +255,7 @@ export class DriverStatsPage implements OnInit{
       }
     }
 
-    currentjob(){
-      
-      
-      
-    }
-
-    async ionViewWillEnter() {
-    this.currentjob();
+    graphs() {
     const chartContainer = this.el.nativeElement.querySelector('#chart-container');
     const chartContainer1 = this.el.nativeElement.querySelector('#chart-container1');
     const chartContainer2 = this.el.nativeElement.querySelector('#chart-container2');

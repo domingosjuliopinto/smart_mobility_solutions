@@ -72,7 +72,14 @@
         clear-icon="trash-bin"
         class="search_bar"
         placeholder="Enter your Tracking Number"
-      ></ion-searchbar>
+        inputmode="numeric"
+        pattern="[0-9]*"
+        (ionInput)="onInput($event)"
+      >
+      <ion-button slot="end" (click)="onTrack()">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-searchbar>
       &nbsp; &nbsp;
 
       <!--<swiper #swiper [config]="config" (slideChange)="swiperSliderChanged($event)">

@@ -4,8 +4,11 @@ import { NavController, Platform, ToastController } from '@ionic/angular';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { Parcel } from './parcel.model';
 import { ParcelService } from './parcel.service';
+import { Delivery } from '../delivery/delivery.model';
+import { DeliveryService } from '../delivery/delivery.service';
 import { Account } from 'src/model/account.model';
 import { AccountService } from '../../../services/auth/account.service';
 
@@ -16,9 +19,11 @@ import { AccountService } from '../../../services/auth/account.service';
 })
 export class ParcelUpdatePage implements OnInit {
   parcel: Parcel;
+  delivery: Delivery;
   isSaving = false;
   isNew = true;
   isReadyToSave: boolean;
+  newid = 0;
 
   form = this.formBuilder.group({
     id: [null, []],
@@ -41,7 +46,8 @@ export class ParcelUpdatePage implements OnInit {
     private accountService: AccountService,
     public platform: Platform,
     protected toastCtrl: ToastController,
-    private parcelService: ParcelService
+    private parcelService: ParcelService,
+    private deliveryService: DeliveryService
   ) {
     // Watch the form for changes, and
     this.form.valueChanges.subscribe(v => {
@@ -51,6 +57,8 @@ export class ParcelUpdatePage implements OnInit {
 
   account: Account;
   disabled_sender_email = '';
+  pararr=[];
+  delarr=[];
 
   ngOnInit() {
     this.accountService.identity().then(account => {
@@ -88,6 +96,14 @@ export class ParcelUpdatePage implements OnInit {
     });
   }
 
+  findnew(parr,delarr){
+    for(var i=0;i<parr.length;i++){
+      if(!delarr.includes(parr[i])){
+        return parr[i]
+      }
+    }
+  }
+
   save() {
     this.isSaving = true;
     const parcel = this.createFromForm();
@@ -113,7 +129,19 @@ export class ParcelUpdatePage implements OnInit {
     this.isSaving = false;
     const toast = await this.toastCtrl.create({ message: `Parcel ${action} successfully.`, duration: 2000, position: 'middle' });
     await toast.present();
-    await this.navController.navigateBack('/tabs/home');
+    if(this.isNew){
+      await this.loadAll();
+      await this.loadAlldel();
+      console.log(this.pararr)
+      console.log(this.delarr)
+      setTimeout(() => {
+        this.newid = this.findnew(this.pararr,this.delarr)
+        console.log(this.newid)
+        this.savedel(this.newid);
+      }, 300);
+    }else{
+      await this.navController.navigateBack('/tabs/home');
+    }
   }
 
   previousState() {
@@ -144,5 +172,95 @@ export class ParcelUpdatePage implements OnInit {
       parcel_weight_in_kg: this.form.get(['parcel_weight_in_kg']).value,
       status: 'Parcel with Sender',
     };
+  }
+
+  loadAll(refresher?) {
+    this.parcelService
+      .query()
+      .pipe(
+        filter((res: HttpResponse<Parcel[]>) => res.ok),
+        map((res: HttpResponse<Parcel[]>) => res.body)
+      )
+      .subscribe(
+        (response: Parcel[]) => {
+          for(var i = 0;i<response?.length;i++){
+            this.pararr.push(response[i].id)
+          }
+          if (typeof refresher !== 'undefined') {
+            setTimeout(() => {
+              refresher.target.complete();
+            }, 750);
+          }
+        },
+        async error => {
+          console.error(error);
+          const toast = await this.toastCtrl.create({ message: 'Failed to load data', duration: 2000, position: 'middle' });
+          await toast.present();
+        }
+      );
+  }
+
+  loadAlldel(refresher?) {
+    this.deliveryService
+      .query()
+      .pipe(
+        filter((res: HttpResponse<Delivery[]>) => res.ok),
+        map((res: HttpResponse<Delivery[]>) => res.body)
+      )
+      .subscribe(
+        (response: Delivery[]) => {
+          for(var i = 0;i<response?.length;i++){
+            this.delarr.push(response[i].parcel_id)
+          }
+          if (typeof refresher !== 'undefined') {
+            setTimeout(() => {
+              refresher.target.complete();
+            }, 750);
+          }
+        },
+        async error => {
+          console.error(error);
+          const toast = await this.toastCtrl.create({ message: 'Failed to load data', duration: 2000, position: 'middle' });
+          await toast.present();
+        }
+      );
+  }
+
+  private createFromFormdel(newid): Delivery {
+    return {
+      ...new Delivery(),
+      id: null || undefined,
+      parcel_id: newid,
+      driver_id: null,
+      request_time: new Date().toISOString().slice(0, 19) + 'Z',
+      assigned_time: null,
+      estimated_time: null,
+      ended_time: null,
+      star_received: null,
+    };
+  }
+
+  savedel(newid) {
+    this.isSaving = true;
+    const delivery = this.createFromFormdel(newid);
+    this.subscribeToSaveResponsedel(this.deliveryService.create(delivery));
+  }
+
+  protected subscribeToSaveResponsedel(result: Observable<HttpResponse<Delivery>>) {
+    result.subscribe(
+      (res: HttpResponse<Delivery>) => this.onSaveSuccessdel(res),
+      (res: HttpErrorResponse) => this.onError(res.error)
+    );
+  }
+
+  async onSaveSuccessdel(response) {
+    let action = 'updated';
+    if (response.status === 201) {
+      action = 'created';
+    }
+    this.isSaving = false;
+    const toast = await this.toastCtrl.create({ message: `Delivery ${action} successfully.`, duration: 2000, position: 'middle' });
+    await toast.present();
+    await this.navController.navigateBack('/tabs/home');
   }
 }

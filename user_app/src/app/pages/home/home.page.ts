@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MenuController, NavController } from '@ionic/angular';
+import { MenuController, NavController, ToastController } from '@ionic/angular';
 import { Account } from 'src/model/account.model';
 import { Autoplay, EffectCube, SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
@@ -67,10 +67,12 @@ export class HomePage implements OnInit {
   ];
 
   account: Account;
+  trackingnumber = '';
 
   constructor(
     public navController: NavController,
     private accountService: AccountService,
+    protected toastCtrl: ToastController,
     private loginService: LoginService,
     public menuCtrl: MenuController
   ) {
@@ -113,4 +115,39 @@ export class HomePage implements OnInit {
   private goBackToHomePage(): void {
     this.navController.navigateBack('');
   }
+
+  onInput(event: any) {
+    this.trackingnumber = event.target.value.trim();
+    // do something with the tracking number, such as sending it to a server or updating a local variable
+  }
+
+  async onTrack(){
+    
+      const input = this.trackingnumber;
+    
+      if (input == '') {
+        // input is empty, do nothing
+        const toast = await this.toastCtrl.create({ message: `No Tracking ID Entered`, duration: 2000, position: 'middle' });
+        await toast.present();
+        return
+      }
+    
+      const number = Number(input);
+    
+      if (isNaN(number) || number <= 0 || !Number.isInteger(number)) {
+        // input is not a positive integer, display error message
+        const toast = await this.toastCtrl.create({ message: `Invalid Tracking ID: Please enter a valid Tracking ID`, duration: 2000, position: 'middle' });
+        await toast.present();
+        return;
+      }
+    
+      try{
+        await this.navController.navigateForward('/tabs/parcel/'+number+'/view');
+      }catch(error){
+        const toast = await this.toastCtrl.create({ message: `Parcel with this ID doesn't exist`, duration: 2000, position: 'middle' });
+        await toast.present();
+      }
+      
+  }
+  
 }
