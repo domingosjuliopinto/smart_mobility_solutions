@@ -95,7 +95,17 @@
     &nbsp;
     <ion-item fill="outline">
       <ion-label position="floating">Status</ion-label>
-      <ion-input type="text" name="status" formControlName="status"></ion-input>
+      <ion-select
+        name="status"
+        formControlName="status"
+        placeholder="Select Status"
+        [interfaceOptions]="customAlertOptions"
+        interface="alert"
+      >
+        <ion-select-option value="Parcel with Sender">Parcel with Sender</ion-select-option>
+        <ion-select-option value="Parcel with Driver">Parcel with Driver</ion-select-option>
+        <ion-select-option value="Completed">Completed</ion-select-option>
+      </ion-select>
     </ion-item>
   </form>
 </ion-content>

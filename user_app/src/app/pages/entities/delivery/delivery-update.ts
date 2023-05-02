@@ -10,6 +10,7 @@ import { DeliveryService } from './delivery.service';
 @Component({
   selector: 'page-delivery-update',
   templateUrl: 'delivery-update.html',
+  styleUrls: ['delivery-detail.scss'],
 })
 export class DeliveryUpdatePage implements OnInit {
   delivery: Delivery;

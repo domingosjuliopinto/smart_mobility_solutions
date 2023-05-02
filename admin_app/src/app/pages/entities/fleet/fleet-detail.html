@@ -14,7 +14,11 @@
     <span class="screen__background__shape screen__background__shape2"></span>
     <span class="screen__background__shape screen__background__shape1"></span>
   </div>
-
+  
+  <ion-button (click)="historyview(0)">Driver Details</ion-button>
+  <ion-button (click)="historyview(1)">Driver Stats</ion-button><br><br>
+  
+  <div *ngIf="history_view == 0">
   <ion-card>
     <!-- <ion-card-header> -->
     <!-- <ion-card-title>Parcel Name</ion-card-title>
@@ -65,5 +69,23 @@
   <ion-button expand="block" shape="round" fill="outline" color="primary" (click)="open(fleet)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
   &nbsp;
   <ion-button expand="block" shape="round" fill="outline" color="danger" (click)="deleteModal(fleet)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+</div>
+</div>
+<div style="background-color: #F5FCFF;" *ngIf="history_view == 1">
+  <div>
+    <div id="chart-container"></div>
+  </div>
+  <br>
+  <div>
+    <div id="chart-container1"></div>
+  </div>
+  <br>
+  <div>
+    <div id="chart-container2"></div>
+  </div>
+  <br>
+  <div>
+    <div id="chart-container3"></div>
+  </div>
 </div>
 </ion-content>

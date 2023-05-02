@@ -132,11 +132,8 @@ export class ParcelUpdatePage implements OnInit {
     if(this.isNew){
       await this.loadAll();
       await this.loadAlldel();
-      console.log(this.pararr)
-      console.log(this.delarr)
       setTimeout(() => {
         this.newid = this.findnew(this.pararr,this.delarr)
-        console.log(this.newid)
         this.savedel(this.newid);
       }, 300);
     }else{

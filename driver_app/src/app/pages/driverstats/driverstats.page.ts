@@ -26,9 +26,6 @@ import { FleetService } from '../entities/fleet/fleet.service';
 export class DriverStatsPage implements OnInit{
 
   account: Account;
-  fleets: Fleet[];
-  parcels: Parcel[];
-  deliveries: Delivery[];
   i = 0;
   j = 0;
   drive_id = 0;
@@ -70,11 +67,7 @@ export class DriverStatsPage implements OnInit{
     private deliveryService: DeliveryService,
     private toastCtrl: ToastController,
     private accountService: AccountService,
-    ) {
-      this.fleets = [];
-      this.parcels = [];
-      this.deliveries = [];
-    }
+    ) {}
 
     ngOnInit(){
       this.accountService.identity().then(account => {
@@ -83,11 +76,6 @@ export class DriverStatsPage implements OnInit{
         } else {
           this.account = account;
           this.loadAll();
-          this.loadAll2();
-          this.loadAll1();
-          setTimeout(() => {
-            this.graphs();
-          }, 300);
         }
       });
     }
@@ -96,7 +84,7 @@ export class DriverStatsPage implements OnInit{
       this.navController.navigateBack('');
     }
   
-    async loadAll(refresher?) {
+    loadAll(refresher?) {
       this.fleetService
         .query()
         .pipe(
@@ -105,10 +93,10 @@ export class DriverStatsPage implements OnInit{
         )
         .subscribe(
           (response: Fleet[]) => {
-            this.fleets = response;
-            for(this.i=0;this.i<this.fleets?.length;this.i++){
-              if(this.fleets[this.i].driver_email==this.account.email){
-                this.drive_id = this.fleets[this.i].id;
+            for(this.i=0;this.i<response?.length;this.i++){
+              if(response[this.i].driver_email==this.account.email){
+                this.drive_id = response[this.i].id;
+                this.loadAll2();
               }
             }
             if (typeof refresher !== 'undefined') {
@@ -125,7 +113,7 @@ export class DriverStatsPage implements OnInit{
         );
     }
 
-    async loadAll1(refresher?) {
+    loadAll1(refresher?) {
       this.parcelService
         .query()
         .pipe(
@@ -134,43 +122,43 @@ export class DriverStatsPage implements OnInit{
         )
         .subscribe(
           (response: Parcel[]) => {
-            this.parcels = response;
-            for(this.i=0;this.i<this.parcels?.length;this.i++){
-              if(this.pararr.includes(this.parcels[this.i].id)){
+            for(this.i=0;this.i<response?.length;this.i++){
+              if(this.pararr.includes(response[this.i].id)){
                 //for types of parcels delivery
-                if(this.parcels[this.i].parcel_type=="Electronic Items"){
+                if(response[this.i].parcel_type=="Electronic Items"){
                   this.electronics+=1
                 }
-                if(this.parcels[this.i].parcel_type=="Documents"){
+                if(response[this.i].parcel_type=="Documents"){
                   this.documents+=1
                 }
-                if(this.parcels[this.i].parcel_type=="Light Items"){
+                if(response[this.i].parcel_type=="Light Items"){
                   this.light+=1
                 }
-                if(this.parcels[this.i].parcel_type=="Heavy Items"){
+                if(response[this.i].parcel_type=="Heavy Items"){
                   this.heavy+=1
                 }
                 //for weight of parcel delivered
-                if(this.parcels[this.i].parcel_weight_in_kg>=0&&this.parcels[this.i].parcel_weight_in_kg<=1.0){
+                if(response[this.i].parcel_weight_in_kg>=0&&response[this.i].parcel_weight_in_kg<=1.0){
                   this.r0010+=1
                 }
-                if(this.parcels[this.i].parcel_weight_in_kg>1.0&&this.parcels[this.i].parcel_weight_in_kg<=2.0){
+                if(response[this.i].parcel_weight_in_kg>1.0&&response[this.i].parcel_weight_in_kg<=2.0){
                   this.r1020+=1
                 }
-                if(this.parcels[this.i].parcel_weight_in_kg>2.0&&this.parcels[this.i].parcel_weight_in_kg<=3.0){
+                if(response[this.i].parcel_weight_in_kg>2.0&&response[this.i].parcel_weight_in_kg<=3.0){
                   this.r2030+=1
                 }
-                if(this.parcels[this.i].parcel_weight_in_kg>3.0&&this.parcels[this.i].parcel_weight_in_kg<=4.0){
+                if(response[this.i].parcel_weight_in_kg>3.0&&response[this.i].parcel_weight_in_kg<=4.0){
                   this.r3040+=1
                 }
-                if(this.parcels[this.i].parcel_weight_in_kg>=4.0&&this.parcels[this.i].parcel_weight_in_kg<=5.0){
+                if(response[this.i].parcel_weight_in_kg>=4.0&&response[this.i].parcel_weight_in_kg<=5.0){
                   this.r4050+=1
                 }
-                if(this.parcels[this.i].parcel_weight_in_kg>=5.0){
+                if(response[this.i].parcel_weight_in_kg>=5.0){
                   this.r50+=1
                 }
               }
             }
+            this.graphs();
             if (typeof refresher !== 'undefined') {
               setTimeout(() => {
                 refresher.target.complete();
@@ -185,7 +173,7 @@ export class DriverStatsPage implements OnInit{
         );
     }
 
-    async loadAll2(refresher?) {
+    loadAll2(refresher?) {
       this.deliveryService
         .query()
         .pipe(
@@ -194,28 +182,27 @@ export class DriverStatsPage implements OnInit{
         )
         .subscribe(
           (response: Delivery[]) => {
-            this.deliveries = response;
-            for(this.j=0;this.j<this.deliveries?.length;this.j++){
-              if(this.deliveries[this.j].driver_id==this.drive_id){
-                if(this.deliveries[this.j].star_received==0){
+            for(this.j=0;this.j<response?.length;this.j++){
+              if(response[this.j].driver_id==this.drive_id){
+                if(response[this.j].star_received==0){
                   this.star0+=1
                 }
-                if(this.deliveries[this.j].star_received==1){
+                if(response[this.j].star_received==1){
                   this.star1+=1
                 }
-                if(this.deliveries[this.j].star_received==2){
+                if(response[this.j].star_received==2){
                   this.star2+=1
                 }
-                if(this.deliveries[this.j].star_received==3){
+                if(response[this.j].star_received==3){
                   this.star3+=1
                 }
-                if(this.deliveries[this.j].star_received==4){
+                if(response[this.j].star_received==4){
                   this.star4+=1
                 }
-                if(this.deliveries[this.j].star_received==5){
+                if(response[this.j].star_received==5){
                   this.star5+=1
                 }
-                var duration = this.tol(this.deliveries[this.j].assigned_time,this.deliveries[this.j].estimated_time,this.deliveries[this.j].ended_time)
+                var duration = this.tol(response[this.j].assigned_time,response[this.j].estimated_time,response[this.j].ended_time)
                 if(duration){
                   if (duration>=0){
                     this.Ontime+=1;
@@ -225,9 +212,10 @@ export class DriverStatsPage implements OnInit{
                 }else{
                   this.Ongoing+=1;
                 }
-                this.pararr.push(this.deliveries[this.j].parcel_id)
+                this.pararr.push(response[this.j].parcel_id)
               }
             }
+            this.loadAll1();
             if (typeof refresher !== 'undefined') {
               setTimeout(() => {
                 refresher.target.complete();

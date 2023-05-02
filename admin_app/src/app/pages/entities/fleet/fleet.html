@@ -29,7 +29,7 @@
     <ion-label>Fleet Free</ion-label>
     <ion-card *ngFor="let fleet of fleets; trackBy: trackId">
       <!-- Check parcel-detail.html for comments -->
-      <ion-grid (click)="view(fleet)" *ngIf="fleet.vehicle_status=='Free'">
+      <ion-grid (click)="view(fleet)" *ngIf="fleet.vehicle_status=='Free'||fleet.vehicle_status=='No Vehicle Assigned'">
         <ion-row>
           <ion-col><div id="sentparcelid">ID : {{fleet.id}}</div></ion-col>
         </ion-row>

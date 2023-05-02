@@ -26,11 +26,11 @@ export class HomePage implements OnInit {
       url: '/tabs/home',
       icon: 'home',
     },
-    {
+    /*{
       title: 'Map',
       url: '/tabs/map',
       icon: 'map',
-    },
+    },*/
     {
       title: 'Fill Driver Details',
       url: '/tabs/fleet/new',
@@ -98,11 +98,11 @@ export class HomePage implements OnInit {
                 url: '/tabs/home',
                 icon: 'home',
               },
-              {
+              /*{
                 title: 'Map',
                 url: '/tabs/map',
                 icon: 'map',
-              },
+              },*/
               {
                 title: 'Emergency Status',
                 url: '/tabs/fleet/'+this.drivid+'/edit',

@@ -20,10 +20,15 @@ export class HomePage implements OnInit {
       url: '/tabs/home',
       icon: 'home',
     },
-    {
+   /* {
       title: 'Map',
       url: '/tabs/map',
       icon: 'map',
+    },*/
+    {
+      title: 'Check Stats',
+      url: '/tabs/driverstats',
+      icon: 'stats-chart-outline',
     },
     {
       title: 'Admin Services',
@@ -42,11 +47,6 @@ export class HomePage implements OnInit {
           title: 'Fleet',
           url: '/tabs/fleet/',
           icon: 'locate-outline',
-        },
-        {
-          title: 'Check Stats',
-          url: '/tabs/driverstats',
-          icon: 'stats-chart-outline',
         },
       ],
     },

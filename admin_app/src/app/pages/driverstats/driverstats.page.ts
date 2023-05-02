@@ -225,69 +225,69 @@ export class DriverStatsPage implements OnInit{
     }
 
     graphs() {
-    const chartContainer = this.el.nativeElement.querySelector('#chart-container');
-    const chartContainer1 = this.el.nativeElement.querySelector('#chart-container1');
-    const chartContainer2 = this.el.nativeElement.querySelector('#chart-container2');
-    const chartContainer3 = this.el.nativeElement.querySelector('#chart-container3');
+    const chartContainer4 = this.el.nativeElement.querySelector('#chart-container4');
+    const chartContainer5 = this.el.nativeElement.querySelector('#chart-container5');
+    const chartContainer6 = this.el.nativeElement.querySelector('#chart-container6');
+    const chartContainer7 = this.el.nativeElement.querySelector('#chart-container7');
     const mediaQuery1 = window.matchMedia('(max-width:388px)');
     const mediaQuery2 = window.matchMedia('(max-width:480px)');
     const mediaQuery3 = window.matchMedia('(max-width:602px)');
     const mediaQuery4 = window.matchMedia('(max-width:768px)');
     if (mediaQuery1.matches) {
-      this.renderer.setStyle(chartContainer, 'width', '310px');
-      this.renderer.setStyle(chartContainer, 'height', '350px');
-      this.renderer.setStyle(chartContainer1, 'width', '310px');
-      this.renderer.setStyle(chartContainer1, 'height', '310px');
-      this.renderer.setStyle(chartContainer2, 'width', '310px');
-      this.renderer.setStyle(chartContainer2, 'height', '350px');
-      this.renderer.setStyle(chartContainer3, 'width', '310px');
-      this.renderer.setStyle(chartContainer3, 'height', '310px');
+      this.renderer.setStyle(chartContainer4, 'width', '310px');
+      this.renderer.setStyle(chartContainer4, 'height', '350px');
+      this.renderer.setStyle(chartContainer5, 'width', '310px');
+      this.renderer.setStyle(chartContainer5, 'height', '310px');
+      this.renderer.setStyle(chartContainer6, 'width', '310px');
+      this.renderer.setStyle(chartContainer6, 'height', '350px');
+      this.renderer.setStyle(chartContainer7, 'width', '310px');
+      this.renderer.setStyle(chartContainer7, 'height', '310px');
     }else if(mediaQuery2.matches){
-      this.renderer.setStyle(chartContainer, 'width', '400px');
-      this.renderer.setStyle(chartContainer, 'height', '400px');
-      this.renderer.setStyle(chartContainer1, 'width', '400px');
-      this.renderer.setStyle(chartContainer1, 'height', '400px');
-      this.renderer.setStyle(chartContainer2, 'width', '400px');
-      this.renderer.setStyle(chartContainer2, 'height', '400px');
-      this.renderer.setStyle(chartContainer3, 'width', '400px');
-      this.renderer.setStyle(chartContainer3, 'height', '400px');
+      this.renderer.setStyle(chartContainer4, 'width', '400px');
+      this.renderer.setStyle(chartContainer4, 'height', '400px');
+      this.renderer.setStyle(chartContainer5, 'width', '400px');
+      this.renderer.setStyle(chartContainer5, 'height', '400px');
+      this.renderer.setStyle(chartContainer6, 'width', '400px');
+      this.renderer.setStyle(chartContainer6, 'height', '400px');
+      this.renderer.setStyle(chartContainer7, 'width', '400px');
+      this.renderer.setStyle(chartContainer7, 'height', '400px');
     }else if(mediaQuery3.matches){
-      this.renderer.setStyle(chartContainer, 'width', '500px');
-      this.renderer.setStyle(chartContainer, 'height', '500px');
-      this.renderer.setStyle(chartContainer1, 'width', '500px');
-      this.renderer.setStyle(chartContainer1, 'height', '500px');
-      this.renderer.setStyle(chartContainer2, 'width', '500px');
-      this.renderer.setStyle(chartContainer2, 'height', '500px');
-      this.renderer.setStyle(chartContainer3, 'width', '500px');
-      this.renderer.setStyle(chartContainer3, 'height', '500px');
+      this.renderer.setStyle(chartContainer4, 'width', '500px');
+      this.renderer.setStyle(chartContainer4, 'height', '500px');
+      this.renderer.setStyle(chartContainer5, 'width', '500px');
+      this.renderer.setStyle(chartContainer5, 'height', '500px');
+      this.renderer.setStyle(chartContainer6, 'width', '500px');
+      this.renderer.setStyle(chartContainer6, 'height', '500px');
+      this.renderer.setStyle(chartContainer7, 'width', '500px');
+      this.renderer.setStyle(chartContainer7, 'height', '500px');
     }else if(mediaQuery4.matches){
-      this.renderer.setStyle(chartContainer, 'width', '600px');
-      this.renderer.setStyle(chartContainer, 'height', '600px');
-      this.renderer.setStyle(chartContainer1, 'width', '600px');
-      this.renderer.setStyle(chartContainer1, 'height', '600px');
-      this.renderer.setStyle(chartContainer2, 'width', '600px');
-      this.renderer.setStyle(chartContainer2, 'height', '600px');
-      this.renderer.setStyle(chartContainer3, 'width', '600px');
-      this.renderer.setStyle(chartContainer3, 'height', '600px');
+      this.renderer.setStyle(chartContainer4, 'width', '600px');
+      this.renderer.setStyle(chartContainer4, 'height', '600px');
+      this.renderer.setStyle(chartContainer5, 'width', '600px');
+      this.renderer.setStyle(chartContainer5, 'height', '600px');
+      this.renderer.setStyle(chartContainer6, 'width', '600px');
+      this.renderer.setStyle(chartContainer6, 'height', '600px');
+      this.renderer.setStyle(chartContainer7, 'width', '600px');
+      this.renderer.setStyle(chartContainer7, 'height', '600px');
     }else{
-      this.renderer.setStyle(chartContainer, 'width', '700px');
-      this.renderer.setStyle(chartContainer, 'height', '700px');
-      this.renderer.setStyle(chartContainer1, 'width', '700px');
-      this.renderer.setStyle(chartContainer1, 'height', '700px');
-      this.renderer.setStyle(chartContainer2, 'width', '700px');
-      this.renderer.setStyle(chartContainer2, 'height', '700px');
-      this.renderer.setStyle(chartContainer3, 'width', '700px');
-      this.renderer.setStyle(chartContainer3, 'height', '700px');
+      this.renderer.setStyle(chartContainer4, 'width', '700px');
+      this.renderer.setStyle(chartContainer4, 'height', '700px');
+      this.renderer.setStyle(chartContainer5, 'width', '700px');
+      this.renderer.setStyle(chartContainer5, 'height', '700px');
+      this.renderer.setStyle(chartContainer6, 'width', '700px');
+      this.renderer.setStyle(chartContainer6, 'height', '700px');
+      this.renderer.setStyle(chartContainer7, 'width', '700px');
+      this.renderer.setStyle(chartContainer7, 'height', '700px');
     }
     
     // register echarts components
     echarts.use([PieChart, BarChart, LineChart, TitleComponent, TooltipComponent, CanvasRenderer, LegendComponent,GridComponent]);
   
     // create chart instance
-    const chart = echarts.init(document.getElementById('chart-container'));
-    const chart1 = echarts.init(document.getElementById('chart-container1'));
-    const chart2 = echarts.init(document.getElementById('chart-container2'));
-    const chart3 = echarts.init(document.getElementById('chart-container3'));
+    const chart4 = echarts.init(document.getElementById('chart-container4'));
+    const chart5 = echarts.init(document.getElementById('chart-container5'));
+    const chart6 = echarts.init(document.getElementById('chart-container6'));
+    const chart7 = echarts.init(document.getElementById('chart-container7'));
   
     // set chart options
     const options: EChartsOption = {
@@ -404,10 +404,10 @@ export class DriverStatsPage implements OnInit{
     };
   
     // set chart options and render chart
-    chart.setOption(options);
-    chart1.setOption(options1);
-    chart2.setOption(options2);
-    chart3.setOption(options3);
+    chart4.setOption(options);
+    chart5.setOption(options1);
+    chart6.setOption(options2);
+    chart7.setOption(options3);
   }
   
 }

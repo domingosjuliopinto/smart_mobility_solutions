@@ -32,7 +32,15 @@
       &nbsp;
       <ion-item fill="outline">
         <ion-label position="floating">Driver Id</ion-label>
-        <ion-input type="number" name="driver_id" formControlName="driver_id"></ion-input>
+        <ion-select
+          name="driver_id"
+          formControlName="driver_id"
+          placeholder="Select Free Driver ID"
+          [interfaceOptions]="customAlertOptions"
+          interface="alert"
+        >
+        <ion-select-option *ngFor="let fid of flearr" [value]="fid">{{ fid }}</ion-select-option>
+        </ion-select>
       </ion-item>
       &nbsp;
       <ion-item>

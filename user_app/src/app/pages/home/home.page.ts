@@ -20,11 +20,11 @@ export class HomePage implements OnInit {
       url: '/tabs/home',
       icon: 'home',
     },
-    {
+    /*{
       title: 'Map',
       url: '/tabs/map',
       icon: 'map',
-    },
+    },*/
     {
       title: 'Self Navigation',
       url: '/tabs/selfnavig',
@@ -47,6 +47,11 @@ export class HomePage implements OnInit {
           title: 'Parcel History',
           url: '/tabs/parcel',
           icon: 'clipboard-outline',
+        },
+        {
+          title: 'Rate Delivery',
+          url: '/tabs/delivery',
+          icon: 'star-outline',
         },
       ],
     },

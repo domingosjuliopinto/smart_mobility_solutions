@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'page-delivery-detail',
   templateUrl: 'delivery-detail.html',
+  styleUrls: ['delivery-detail.scss'],
 })
 export class DeliveryDetailPage implements OnInit {
   delivery: Delivery = {};
