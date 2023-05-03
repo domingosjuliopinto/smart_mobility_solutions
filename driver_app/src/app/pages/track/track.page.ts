@@ -64,6 +64,7 @@ export class TrackPage implements OnInit {
 
     ngOnInit() {
 this.sendlocation()
+this.loadmap();
 // this.webSocketInvoke()
 
   }
@@ -84,9 +85,9 @@ this.sendlocation()
       this.map.invalidateSize();
     }, 0);
   }
-  async ionViewWillEnter() {
-    this.loadmap();
-  }
+  /*async ionViewWillEnter() {
+    
+  }*/
 
   
   private sendlocation(): void {
