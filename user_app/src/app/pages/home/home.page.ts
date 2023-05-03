@@ -24,12 +24,12 @@ export class HomePage implements OnInit {
       title: 'Map',
       url: '/tabs/map',
       icon: 'map',
-    },*/
+    },
     {
       title: 'Self Navigation',
       url: '/tabs/selfnavig',
       icon: 'navigate-outline',
-    },
+    },*/
     {
       title: 'Tracking Services',
       children: [
