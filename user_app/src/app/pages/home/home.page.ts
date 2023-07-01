@@ -38,11 +38,11 @@ export class HomePage implements OnInit {
           url: '/tabs/parcel/new',
           icon: 'cube-outline',
         },
-        {
+        /*{
           title: 'Locate Parcel',
           url: '/tabs/sboneb',
           icon: 'locate-outline',
-        },
+        },*/
         {
           title: 'Parcel History',
           url: '/tabs/parcel',
